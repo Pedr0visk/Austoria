@@ -9,6 +9,15 @@ class SaleController extends Controller
 {
     public function store()
     {
-        Sale::createAll(request()->all());
+        Sale::createAll($this->validateRequest());
+    }
+
+    public function validateRequest()
+    {
+        return request()->validate([
+            'customer_id' => 'required',
+            'discount'    => 'nullable',
+            'items'       => 'required|array|min:1'
+        ]);
     }
 }

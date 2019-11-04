@@ -14,7 +14,7 @@ class SaleItem extends Model
 
     protected $guarded = [];
 
-    public function getSubtotalAttribute()
+    public function getTotalAmountAttribute()
     {
         return $this->attributes['price'] * $this->attributes['quantity'];
     }
