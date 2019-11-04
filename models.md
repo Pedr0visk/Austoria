@@ -7,7 +7,10 @@ category
 price
 
 # SALE
-customer_id NULL
+customer_id
+doc
+discount
+total
 
 # SALE_ITEM
 id
@@ -21,3 +24,10 @@ discount
 id
 name
 description
+
+# CUSTOMER
+id
+name
+dob
+email
+phone

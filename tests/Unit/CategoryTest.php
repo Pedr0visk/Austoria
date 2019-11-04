@@ -1,20 +1,22 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Category;
 
-class CategoryManagementTest extends TestCase 
+class Categorytest extends TestCase
 {
     use RefreshDatabase;
-    
+
     /** @test */
-    public function a_cat_can_be_added()
+    public function a_category_was_added()
     {
-        $response = $this->post('/categories', ['name' => 'produto']);
-        
+        Category::create([
+            'name' => 'Servico'
+        ]);
+
         $this->assertCount(1, Category::all());
     }
 }
