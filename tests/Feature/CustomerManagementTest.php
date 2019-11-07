@@ -15,13 +15,14 @@ class CustomerManagementTest extends TestCase
     /** @test */
     public function a_customer_can_be_created()
     {
+        $this->withoutExceptionHandling();
         $response = $this->post('/customers', $this->data());
 
         $customer = Customer::all();
 
         $this->assertCount(1, $customer);
         $this->assertInstanceOf(Carbon::class, $customer->first()->dob);
-        $this->assertEquals('1997/14/05', $customer->first()->dob->format('Y/d/m'));
+        $this->assertEquals('1997/31/08', $customer->first()->dob->format('Y/d/m'));
     }
 
     /** @test */
@@ -48,10 +49,42 @@ class CustomerManagementTest extends TestCase
         $response->assertSessionHasErrors('phone');
     }
 
+    /** @test */
+    public function a_customer_can_be_updated()
+    {
+        $this->withoutExceptionHandling();
+
+        $response = $this->post('/customers', $this->data());
+
+        $customer = Customer::first();
+
+        $response = $this->patch($customer->path(), [
+            'name' => 'Pedro',
+            'dob' => '09/12/1995',
+            'phone' => '21988970938',
+            'email' => 'pbelloto@gmail.com',
+        ]);
+
+        $this->assertEquals('1995/12/09', $customer->first()->dob->format('Y/d/m'));
+
+
+        $this->post('/books', $this->data());
+
+
+        $response = $this->patch($book->path(), [
+            'title' => 'New Title',
+            'author_id' => 'New Author'
+        ]);
+
+        $this->assertEquals('New Title', Book::first()->title);
+        $this->assertEquals(2, Book::first()->author_id);
+        $response->assertRedirect($book->fresh()->path());
+    }
+
     private function data() {
         return [
-            'name' => 'Cusomer name',
-            'dob' => '05/14/1997',
+            'name' => 'Customer name',
+            'dob' => '31/08/1997',
             'phone' => '24998869574',
             'email' => 'pedro357bm@gmail.com',
         ];

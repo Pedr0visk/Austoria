@@ -10,6 +10,6 @@ $factory->define(Customer::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->email,
         'phone' => $faker->phoneNumber,
-        'dob' => date($format = 'm-d-Y')
+        'dob' => date($format = 'd/m/Y')
     ];
 });
