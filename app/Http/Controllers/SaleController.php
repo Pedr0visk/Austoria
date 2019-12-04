@@ -7,6 +7,11 @@ use App\Models\Sale;
 
 class SaleController extends Controller
 {
+    public function index()
+    {
+        return view('sales.create');
+    }
+
     public function store()
     {
         Sale::createAll($this->validateRequest());

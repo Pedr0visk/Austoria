@@ -16,7 +16,6 @@ class SaleManagementTest extends TestCase
     /** @test */
     public function a_sale_can_be_created()
     {
-        $this->withoutExceptionHandling();
         $customer = factory(Customer::class)->create();
         $products = factory(Product::class, 2)->create();
         

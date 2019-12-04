@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('barcode')->nullable();
-            $table->decimal('price', 3, 2);
+            $table->float('price', 3, 2);
             $table->timestamps();
             
             $table->unsignedBigInteger('category_id');

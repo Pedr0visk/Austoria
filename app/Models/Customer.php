@@ -11,8 +11,14 @@ class Customer extends Model
 
     protected $dates = ['dob'];
 
+    public function path()
+    {
+        return '/customers/' . $this->id;
+    }
+
     public function setDobAttribute($dob)
     {
         $this->attributes['dob'] = Carbon::createFromFormat('d/m/Y', $dob);
     }
 }
+

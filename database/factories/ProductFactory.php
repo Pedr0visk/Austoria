@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 $factory->define(Product::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'price' => rand(10, 500),
+        'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 300.50),
         'category_id' => 1
     ];
 });

@@ -52,8 +52,6 @@ class CustomerManagementTest extends TestCase
     /** @test */
     public function a_customer_can_be_updated()
     {
-        $this->withoutExceptionHandling();
-
         $response = $this->post('/customers', $this->data());
 
         $customer = Customer::first();
@@ -65,20 +63,7 @@ class CustomerManagementTest extends TestCase
             'email' => 'pbelloto@gmail.com',
         ]);
 
-        $this->assertEquals('1995/12/09', $customer->first()->dob->format('Y/d/m'));
-
-
-        $this->post('/books', $this->data());
-
-
-        $response = $this->patch($book->path(), [
-            'title' => 'New Title',
-            'author_id' => 'New Author'
-        ]);
-
-        $this->assertEquals('New Title', Book::first()->title);
-        $this->assertEquals(2, Book::first()->author_id);
-        $response->assertRedirect($book->fresh()->path());
+        $this->assertEquals('1995/12/09', $customer->fresh()->first()->dob->format('Y/m/d'));
     }
 
     private function data() {
