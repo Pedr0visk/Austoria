@@ -210,12 +210,9 @@
                 </div>
             </div>    
             <div class="app-main__outer">
-                <div class="app-main__inner">
-                    <div class="row">
-                        <!-- main -->
-                        @yield('main-content')
-                        
-                    </div>
+                <div class="app-main__inner" id="app">
+                    <!-- main -->
+                    @yield('main-content')
                 </div>
                 <!-- footer -->
                 <div class="app-wrapper-footer">

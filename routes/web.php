@@ -12,4 +12,6 @@ Route::get('/customers', 'CustomerController@index');
 Route::post('/customers', 'CustomerController@store');
 Route::patch('/customers/{customer}', 'CustomerController@update');
 
+Route::get('/sales/create', 'SaleController@create')->name('sales.create');
 Route::post('/sales', 'SaleController@store');
+Route::get('/sales', 'SaleController@index');

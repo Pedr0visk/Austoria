@@ -8,40 +8,6 @@
         <div class="card-header">Produtos</div>
         <!-- card body -->
         <div class="card-body p-0">
-            <form action="{{ route('products.index') }}">
-                <div class="form-group mb-3 p-2">
-                    <label for="category">Categoria</label>
-                    <select class="form-control" id="category" name="category">
-                        <option value="">--</option>
-                        @forelse($categories as $category)
-                            @if( Request::get('category') == $category->id)
-                                <option selected value="{{ $category->id}}">{{ $category->name }}</option>
-                            @else 
-                                <option value="{{ $category->id}}">{{ $category->name }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group mb-3 p-2">
-                    <label for="">De:</label>
-                    <input type="range" name="min_price" id="minPriceInputId" value="{{ Request::get('min_price')}}" min="2" max="1000" oninput="minPriceOutputId.value = minPriceInputId.value">
-                    <output name="minPriceOutputName" id="minPriceOutputId">{{ Request::get('min_price')}}</output> R$
-                </div>
-
-                <div class="form-group mb-3 p-2">
-                    <label for="">Até:</label>
-                    <input type="range" name="max_price" id="maxPriceInputId" value="{{ Request::get('max_price')}}" min="2" max="1000" oninput="maxPriceOutputId.value = maxPriceInputId.value">
-                    <output name="maxPriceOutputName" id="maxPriceOutputId">{{ Request::get('max_price')}}</output> R$
-                </div>
-                
-                <div class="input-group mb-3 p-2">
-                    <input id="search-box" name="name" type="text" class="form-control" placeholder="Pesquisar produto..." value="{{ Request::get('name') }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit">Busca avançada</button>
-                    </div>
-                </div>
-            </form>
             <div class="table-responsive">
                 <table class="table mb-0">
                     <thead>
@@ -77,10 +43,10 @@
         </div>
         <!-- card footer -->
         <div class="card-footer small text-muted">
-            Total Item : {{ $products->total() }}
+            Total Produtos : {{ $products->total() }}
         </div>
     </div>
-    {{ $products->links() }}
+    {{ $products->appends(Request::all())->links() }}
 </div>
 <!-- sidebar -->
 <div class="col-md-4">
@@ -89,23 +55,68 @@
         <div class="card-header">Cadastrar Produto</div>
         <!-- card body -->
         <div class="card-body pb-0">
-            
-            <div class="form-group row">
-                <div class="col-12 mb-3">
-                    <input type="text" placeholder="nome" class="form-control">
+            <form action="{{ route('products.store') }}" method="POST">
+                @csrf
+                <div class="form-group row">
+                    <div class="col-12 mb-3">
+                        <input type="text" name="name" placeholder="nome" class="form-control">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <input type="text" name="price" placeholder="preço" class="form-control">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <select class="form-control" id="category" name="category_id">
+                            <option value="">Selecione uma Categoria</option>
+                            @forelse($categories as $category)
+                                <option value="{{ $category->name }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Cadastrar</button>
+                    </div>
                 </div>
-                <div class="col-12 mb-3">
-                    <input type="text" placeholder="preço" class="form-control">
+            </form>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <!-- card header -->
+        <div class="card-header">Filtrar Produtos</div>
+        <!-- card body -->
+        <div class="card-body pb-0">
+            <form action="{{ route('products.index') }}">
+                <div class="form-group mb-3 p-2">
+                    <input id="search-box" name="name" type="text" class="form-control" placeholder="Pesquisar produto..." value="{{ Request::get('name') }}">
                 </div>
-                <div class="col-12 mb-3">
-                    <select name="" id="" class="form-control">
-                        <option value="">--</option>
+
+                <div class="form-group mb-3 p-2">
+                    <select class="form-control" id="category" name="category">
+                        <option value="">Selecione uma Categoria</option>
+                        @forelse($categories as $category)
+                            @if( Request::get('category') == $category->id)
+                                <option selected value="{{ $category->id}}">{{ $category->name }}</option>
+                            @else 
+                                <option value="{{ $category->id}}">{{ $category->name }}</option>
+                            @endif
+                        @endforeach
                     </select>
                 </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Cadastrar</button>
+
+                <div class="form-group mb-3 p-2">
+                    <label for="">De:</label>
+                    <input type="range" name="min_price" id="minPriceInputId" value="{{ Request::get('min_price')}}" min="2" max="1000" oninput="minPriceOutputId.value = minPriceInputId.value">
+                    <output name="minPriceOutputName" id="minPriceOutputId">{{ Request::get('min_price')}}</output> R$
                 </div>
-            </div>
+
+                <div class="form-group mb-3 p-2">
+                    <label for="">Até:</label>
+                    <input type="range" name="max_price" id="maxPriceInputId" value="{{ Request::get('max_price')}}" min="2" max="1000" oninput="maxPriceOutputId.value = maxPriceInputId.value">
+                    <output name="maxPriceOutputName" id="maxPriceOutputId">{{ Request::get('max_price')}}</output> R$
+                </div>
+                
+                <button class="btn btn-success btn-block mb-3" type="submit">Filtrar <i class="fa fa-search"></i></button>
+            </form>
         </div>
     </div>
 </div>

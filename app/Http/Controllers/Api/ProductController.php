@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Product;
+
+class ProductController extends Controller
+{
+    public function index()
+    {
+        $products = Product::all();
+        return response()->json($products);
+    }
+
+    public function search()
+    {
+        $products = Product::query();
+
+        if ($name = request()->q) {
+            $products->where('name', 'ILIKE', '%' . strtolower($name) . '%');
+        }
+
+        $products = $products->get();
+
+        return response()->json($products);
+    }
+}

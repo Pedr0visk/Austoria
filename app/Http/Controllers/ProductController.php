@@ -14,7 +14,7 @@ class ProductController extends Controller
         $categories = Category::all();
 
         if ($name = request()->name) {
-            $products->where('name', 'like', '%' . $name . '%');
+            $products->where('name', 'ILIKE', '%' . strtolower($name) . '%');
         }
 
         if ($category = request()->category) {
@@ -40,7 +40,7 @@ class ProductController extends Controller
     {
         $product = Product::create($this->validateRequest());
         
-        return redirect($product->path());
+        return redirect(route('products.index'));
     }
     
     public function update(Product $product)
@@ -55,6 +55,11 @@ class ProductController extends Controller
         $product->delete();
         
         return redirect('/products');
+    }
+
+    public function search()
+    {
+        return Product::all();
     }
     
     public function validateRequest()
