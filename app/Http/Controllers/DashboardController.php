@@ -11,6 +11,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        return view('dashboard.index');
         // daily
         $sales = SaleItem::select(DB::raw('sum(sale_items.price * sale_items.quantity) as total'))
             ->whereDate('created_at', '2019-12-13')
@@ -29,13 +30,6 @@ class DashboardController extends Controller
             return $sale->total;
         })->sum();
 
-        $sales = DB::table('sales')
-            ->join('sale_items', 'sales.id', '=', 'sale_items.id')
-            ->join('customers', 'sales.customer_id', '=', 'customer.id')
-            ->select(DB::raw('sum(sale_items.price * sale_items.quantity) as total, sales.created_at'))
-            ->groupBy('sales.id')
-            ->get();
-
-        return $sales;
+        return $salesAll;
     }
 }
