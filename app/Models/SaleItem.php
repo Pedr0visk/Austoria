@@ -10,12 +10,21 @@ class SaleItem extends Model
         'product_id',
         'price',
         'quantity',
+        'discount',
     ];
 
     protected $guarded = [];
 
-    public function getTotalAmountAttribute()
+    public function getSubtotalAmountAttribute()
     {
         return $this->attributes['price'] * $this->attributes['quantity'];
+    }
+
+    public function getTotalAmountAttribute()
+    {
+        $total = $this->subtotalAmount;
+        $total -= $total * $this->discount;
+        
+        return $total;
     }
 }

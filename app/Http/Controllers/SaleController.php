@@ -9,25 +9,14 @@ class SaleController extends Controller
 {
     public function index()
     {
-        return view('sales');
+        $sales = Sale::paginate(15);
+
+        return view('sales.index')
+            ->withSales($sales);
     }
 
     public function create()
     {
         return view('sales.create');
-    }
-
-    public function store()
-    {
-        Sale::createAll($this->validateRequest());
-    }
-
-    public function validateRequest()
-    {
-        return request()->validate([
-            'customer_id' => 'required',
-            'discount'    => 'nullable',
-            'items'       => 'required|array|min:1'
-        ]);
     }
 }

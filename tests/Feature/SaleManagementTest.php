@@ -16,10 +16,11 @@ class SaleManagementTest extends TestCase
     /** @test */
     public function a_sale_can_be_created()
     {
+        $this->withoutExceptionHandling();
         $customer = factory(Customer::class)->create();
         $products = factory(Product::class, 2)->create();
         
-        $response = $this->post('/sales', $this->data());
+        $response = $this->post('/api/sales', $this->data());
 
         $sale = Sale::all();
 
@@ -64,10 +65,9 @@ class SaleManagementTest extends TestCase
     {
         return [
             'customer_id' => 1,
-            'discount'    => null,
             'items'       => [
-                ['product_id' => 1, 'quantity' => 10, 'price' => 100],
-                ['product_id' => 2, 'quantity' => 5, 'price' => 150],
+                ['product_id' => 1, 'quantity' => 10, 'price' => 100, 'discount' => 0],
+                ['product_id' => 2, 'quantity' => 5, 'price' => 150, 'discount' => 0],
             ],
         ];
     }

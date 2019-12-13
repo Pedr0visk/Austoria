@@ -2,7 +2,7 @@
 
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        <div class="app-header header-shadow">
+        <div class="app-header header-shadow" style="z-index: 45">
             <div class="app-header__logo">
                 <!-- <div class="logo-src"></div> -->
                 <small>sua logo aqui</small>
@@ -49,7 +49,7 @@
                                 Estatísticas
                             </a>
                         </li>
-                    </ul>        
+                    </ul>
                 </div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
@@ -86,11 +86,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>        
+                    </div>
                 </div>
             </div>
-        </div>        
-           
+        </div>
+
         <div class="app-main">
             <div class="app-sidebar sidebar-shadow">
                 <div class="app-header__logo">
@@ -122,7 +122,7 @@
                             </span>
                         </button>
                     </span>
-                </div>    
+                </div>
                 <div class="scrollbar-sidebar">
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu">
@@ -153,7 +153,7 @@
                                             Listar produtos
                                         </a>
                                     </li>
-                                    
+
                                 </ul>
                             </li>
                             <li>
@@ -208,7 +208,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>    
+            </div>
             <div class="app-main__outer">
                 <div class="app-main__inner" id="app">
                     <!-- main -->
@@ -251,7 +251,7 @@
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>

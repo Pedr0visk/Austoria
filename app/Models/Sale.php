@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-    protected $fillable = ['customer_id', 'discount'];
+    protected $fillable = ['customer_id'];
 
     public static $rules = ['customer_id' => 'required'];
 
@@ -35,20 +35,21 @@ class Sale extends Model
         });
     }
 
-    public function getSubtotalAttribute() 
+    public function getSubtotalAttribute()
     {
         $subtotal = $this->items->map(function ($item) {
-            return $item->totalAmount;
+            return $item->subtotalAmount;
         });
 
         return $subtotal->sum();
     }
 
-    public function getTotalAttribute() 
+    public function getTotalAttribute()
     {
-        $total = $this->subtotal;
-        $total -= $total * $this->discount;
-        
-        return $total;
+        $total = $this->items->map(function ($item) {
+            return $item->totalAmount;
+        });
+
+        return $total->sum();
     }
 }

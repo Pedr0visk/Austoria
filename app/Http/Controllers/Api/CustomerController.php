@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Customer;
+
+class CustomerController extends Controller
+{
+    public function search()
+    {
+        $customers = Customer::query();
+
+        if ($name = request()->name) {
+            $customers->where('name', 'ILIKE', '%' . strtolower($name) . '%');
+        }
+
+        $customers = $customers->get();
+
+        return response()->json($customers);
+    }
+}

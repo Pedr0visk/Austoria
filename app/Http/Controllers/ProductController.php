@@ -28,7 +28,7 @@ class ProductController extends Controller
         if ($max_price = request()->max_price) {
             $products->where('price', '<=', $max_price);
         }
-        
+
         $products = $products->paginate();
 
         return view('products.index')
@@ -39,21 +39,21 @@ class ProductController extends Controller
     public function store()
     {
         $product = Product::create($this->validateRequest());
-        
+
         return redirect(route('products.index'));
     }
-    
+
     public function update(Product $product)
     {
         $product->update($this->validateRequest());
-        
+
         return redirect($product->path());
     }
-    
+
     public function destroy(Product $product)
     {
         $product->delete();
-        
+
         return redirect('/products');
     }
 
@@ -61,7 +61,7 @@ class ProductController extends Controller
     {
         return Product::all();
     }
-    
+
     public function validateRequest()
     {
         return request()->validate([

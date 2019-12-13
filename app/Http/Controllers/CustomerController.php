@@ -9,7 +9,16 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        return view('customers.index');
+        $customers = Customer::query();
+
+        if ($name = request()->name) {
+            $customers->where('name', 'ILIKE', '%' . strtolower($name) . '%');
+        }
+
+        $customers = $customers->paginate();
+
+        return view('customers.index')
+            ->withCustomers($customers);
     }
 
     public function store()

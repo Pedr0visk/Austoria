@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('barcode')->nullable();
             $table->decimal('price', 3, 2);
             $table->timestamps();
-            
+
             $table->unsignedBigInteger('category_id');
         });
     }

@@ -36,13 +36,13 @@ export default {
         },
         discountPrice () {
             let item = this.item
-
-            return (item.quantity * item.price) * (item.discount / 100)
+            let discount = (item.quantity * item.price) * (item.discount / 100)
+            return discount;
         },
         subtotalPrice () {
             let item = this.item
-
-            return this.bruttoPrice - this.discountPrice
+            let subtotal = this.bruttoPrice - this.discountPrice
+            return subtotal;
         },
         costOfGoodsSold () {
             let item = this.item
@@ -74,7 +74,7 @@ export default {
     },
     watch: {
         subtotalPrice () {
-            this.item.subtotal_price = this.subtotalPrice
+            this.item.subtotal_unit_price = this.subtotalPrice
         },
         costOfGoodsSold () {
             this.item.cost_of_goods_sold = this.costOfGoodsSold
