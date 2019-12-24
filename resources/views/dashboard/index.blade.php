@@ -8,122 +8,71 @@
                 <i class="pe-7s-car icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>Análises Dashboard
-                <div class="page-title-subheading">Resumo sobre vendas e produtos da barbearia Austoria
+            <div>Olá Igor,
+                <div class="page-title-subheading">Aqui está o eesumo sobre vendas e produtos da barbearia Austoria
                 </div>
             </div>
         </div>
         <div class="page-title-actions">
             <div class="d-inline-block">
-                <button type="button" class="btn-shadow btn btn-success">
+                <a href="{{ route('sales.create') }}" class="btn-shadow btn btn-success">
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="fa fa-business-time fa-w-20"></i>
                     </span>
-                    add Venda
-                </button>
+                    Nova Venda
+                </a>
             </div>
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content bg-midnight-bloom">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Clientes Atendidos</div>
-                    <div class="widget-subheading">cortes de cabelo ou barbas</div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>200</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content bg-arielle-smile">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Caixa</div>
-                    <div class="widget-subheading">Valor atual</div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>$ 568</span></div>
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-outer">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Caixa</div>
+                        <div class="widget-subheading">HOJE</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-success">{{ $salesAmount }}</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-6 col-xl-4">
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-outer">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Lucro</div>
+                        <div class="widget-subheading">MÊS</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-warning">{{ $monthSalesAmount }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <a href="{{ route('sales.create') }}" class="">
         <div class="card mb-3 widget-content bg-happy-green">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Produtos vendidos</div>
-                    <div class="widget-subheading">cremes, pomadas etc.</div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>20</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content bg-premium-dark">
-            <div class="widget-content-wrapper text-white">
-                <div class="widget-content-left">
-                    <div class="widget-heading">Products Sold</div>
-                    <div class="widget-subheading">Revenue streams</div>
-                </div>
-                <div class="widget-content-right">
-                    <div class="widget-numbers text-warning"><span>$14M</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content">
             <div class="widget-content-outer">
-                <div class="widget-content-wrapper">
+                <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
-                        <div class="widget-heading">Total Orders</div>
-                        <div class="widget-subheading">Last year expenses</div>
+                        <div class="widget-heading">Nova venda</div>
+                        <div class="widget-subheading">clique aqui</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-success">1896</div>
+                        <div class="widget-numbers text-success"><i class="fa text-white fa-plus"></i></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content">
-            <div class="widget-content-outer">
-                <div class="widget-content-wrapper">
-                    <div class="widget-content-left">
-                        <div class="widget-heading">Products Sold</div>
-                        <div class="widget-subheading">Revenue streams</div>
-                    </div>
-                    <div class="widget-content-right">
-                        <div class="widget-numbers text-warning">$3M</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xl-4">
-        <div class="card mb-3 widget-content">
-            <div class="widget-content-outer">
-                <div class="widget-content-wrapper">
-                    <div class="widget-content-left">
-                        <div class="widget-heading">Followers</div>
-                        <div class="widget-subheading">People Interested</div>
-                    </div>
-                    <div class="widget-content-right">
-                        <div class="widget-numbers text-danger">45,9%</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </a>
     </div>
     <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
         <div class="card mb-3 widget-content">
@@ -146,6 +95,66 @@
                         <div class="sub-label-right">100%</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-header">
+                Vendas Recentes
+            </div>
+            <div class="table-responsive">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th>Cliente</th>
+                        <th class="text-center">Subtotal</th>
+                        <th class="text-center">Total</th>
+                        <th class="text-center">Visualizar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse($sales as $key => $sale)
+                        <tr>
+                            <td class="text-center text-muted">#345</td>
+                            <td>
+                                <div class="widget-content p-0">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left mr-3">
+                                            <div class="widget-content-left">
+                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="widget-content-left flex2">
+                                            <div class="widget-heading">{{ $sale->customer->name }}e</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="btn btn-success">R$ {{$sale->subTotal}}</div>
+                            </td>
+                            <td class="text-center">
+                                <div class="btn btn-success">R$ {{$sale->total}}</div>
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ $sale->path() }}" id="PopoverCustomT-1" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr class="table-info">
+                            <td colspan="7" align="center">Nenhuma venda.</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-block text-center card-footer">
+                <a href="{{ route('sales.index') }}" class="btn-wide btn btn-success">ver todas</a>
             </div>
         </div>
     </div>
@@ -296,138 +305,7 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="main-card mb-3 card">
-            <div class="card-header">Active Users
-                <div class="btn-actions-pane-right">
-                    <div role="group" class="btn-group-sm btn-group">
-                        <button class="active btn btn-focus">Last Week</button>
-                        <button class="btn btn-focus">All Month</button>
-                    </div>
-                </div>
-            </div>
-            <div class="table-responsive">
-                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th class="text-center">#</th>
-                        <th>Name</th>
-                        <th class="text-center">City</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="text-center text-muted">#345</td>
-                        <td>
-                            <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left mr-3">
-                                        <div class="widget-content-left">
-                                            <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="widget-content-left flex2">
-                                        <div class="widget-heading">John Doe</div>
-                                        <div class="widget-subheading opacity-7">Web Developer</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center">Madrid</td>
-                        <td class="text-center">
-                            <div class="badge badge-warning">Pending</div>
-                        </td>
-                        <td class="text-center">
-                            <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center text-muted">#347</td>
-                        <td>
-                            <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left mr-3">
-                                        <div class="widget-content-left">
-                                            <img width="40" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="widget-content-left flex2">
-                                        <div class="widget-heading">Ruben Tillman</div>
-                                        <div class="widget-subheading opacity-7">Etiam sit amet orci eget</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center">Berlin</td>
-                        <td class="text-center">
-                            <div class="badge badge-success">Completed</div>
-                        </td>
-                        <td class="text-center">
-                            <button type="button" id="PopoverCustomT-2" class="btn btn-primary btn-sm">Details</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center text-muted">#321</td>
-                        <td>
-                            <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left mr-3">
-                                        <div class="widget-content-left">
-                                            <img width="40" class="rounded-circle" src="assets/images/avatars/2.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="widget-content-left flex2">
-                                        <div class="widget-heading">Elliot Huber</div>
-                                        <div class="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center">London</td>
-                        <td class="text-center">
-                            <div class="badge badge-danger">In Progress</div>
-                        </td>
-                        <td class="text-center">
-                            <button type="button" id="PopoverCustomT-3" class="btn btn-primary btn-sm">Details</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center text-muted">#55</td>
-                        <td>
-                            <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left mr-3">
-                                        <div class="widget-content-left">
-                                            <img width="40" class="rounded-circle" src="assets/images/avatars/1.jpg" alt=""></div>
-                                    </div>
-                                    <div class="widget-content-left flex2">
-                                        <div class="widget-heading">Vinnie Wagstaff</div>
-                                        <div class="widget-subheading opacity-7">UI Designer</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center">Amsterdam</td>
-                        <td class="text-center">
-                            <div class="badge badge-info">On Hold</div>
-                        </td>
-                        <td class="text-center">
-                            <button type="button" id="PopoverCustomT-4" class="btn btn-primary btn-sm">Details</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="d-block text-center card-footer">
-                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                <button class="btn-wide btn btn-success">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="row">
     <div class="col-md-6 col-lg-3">
         <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">

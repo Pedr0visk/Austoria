@@ -16,7 +16,7 @@
                                 <th width="5%">#</th>
                                 <th>nome</th>
                                 <th>email</th>
-                                <th>idade</th>
+                                <th>Data de Nascimento</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,7 +25,7 @@
                                     <td>{{ $customers->firstItem() + $key }}</td>
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->email }}</td>
-                                    <td>{{ $customer->dob }}</td>
+                                    <td>{{ $customer->dob->format('d/m/Y') }}</td>
                                 </tr>
                             @empty
                                 <tr class="table-info">
@@ -47,7 +47,7 @@
     <div class="col-md-4">
         <div class="card mb-3">
             <!-- card header -->
-            <div class="card-header">Cadastrar Produto</div>
+            <div class="card-header">Cadastrar Cliente</div>
             <!-- card body -->
             <div class="card-body pb-0">
                 <form action="{{ route('customers.store') }}" method="POST">
@@ -57,7 +57,13 @@
                             <input type="text" name="name" placeholder="nome" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" name="price" placeholder="preço" class="form-control">
+                            <input type="email" name="email" placeholder="Example@gmail.com..." class="form-control">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input type="text" name="phone" placeholder="(24) 99999-9999" class="form-control">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input type="date" name="dob" placeholder="31/08/1997" class="form-control">
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-success btn-block"><i class="fa fa-plus"></i> Cadastrar</button>

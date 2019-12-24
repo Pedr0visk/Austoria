@@ -18,7 +18,7 @@ class Customer extends Model
 
     public function setDobAttribute($dob)
     {
-        $this->attributes['dob'] = Carbon::createFromFormat('d/m/Y', $dob);
+        $this->attributes['dob'] = Carbon::createFromFormat('Y-m-d', $dob);
     }
 }
 

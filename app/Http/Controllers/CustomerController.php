@@ -24,6 +24,8 @@ class CustomerController extends Controller
     public function store()
     {
         Customer::create($this->validateRequest());
+
+        return redirect(route('customers.index'));
     }
 
     public function update(Customer $customer)

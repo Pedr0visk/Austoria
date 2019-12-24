@@ -23,8 +23,13 @@ class SaleItem extends Model
     public function getTotalAmountAttribute()
     {
         $total = $this->subtotalAmount;
-        $total -= $total * $this->discount;
-        
+        $total -= $total * ($this->discount/100);
+
         return $total;
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

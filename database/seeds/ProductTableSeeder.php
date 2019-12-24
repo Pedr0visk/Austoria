@@ -11,10 +11,10 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        $cat = App\Models\Category::create(['name' => 'service']);
-        factory(App\Models\Product::class, 100)->create(['category_id' => $cat->name]);
+        $cat = App\Models\Category::create(['name' => 'Serviço']);
+        factory(App\Models\Product::class, 5)->create(['category_id' => $cat->name]);
 
-        $cat = App\Models\Category::create(['name' => 'product']);
-        factory(App\Models\Product::class, 100)->create(['category_id' => $cat->name]);
+        $cat = App\Models\Category::create(['name' => 'Produto']);
+        factory(App\Models\Product::class, 5)->create(['category_id' => $cat->name]);
     }
 }

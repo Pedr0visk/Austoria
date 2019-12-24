@@ -13,6 +13,18 @@ class ProductController extends Controller
         $products = Product::query()->with('category');
         $categories = Category::all();
 
+        $products = $products->paginate();
+
+        return view('products.index')
+            ->withProducts($products)
+            ->withCategories($categories);
+    }
+
+    public function search(Request $request)
+    {
+        $categories = Category::all();
+        $products = Product::query()->with('category');
+
         if ($name = request()->name) {
             $products->where('name', 'ILIKE', '%' . strtolower($name) . '%');
         }
@@ -21,26 +33,22 @@ class ProductController extends Controller
             $products->where('category_id', $category);
         }
 
-        if ($min_price = request()->min_price) {
-            $products->where('price', '>=', $min_price);
-        }
-
         if ($max_price = request()->max_price) {
             $products->where('price', '<=', $max_price);
         }
 
         $products = $products->paginate();
 
-        return view('products.index')
-            ->withProducts($products)
-            ->withCategories($categories);
+        return view('products.search')
+            ->withCategories($categories)
+            ->withProducts($products);
     }
 
     public function store()
     {
         $product = Product::create($this->validateRequest());
 
-        return redirect(route('products.index'));
+        return redirect('/products');
     }
 
     public function update(Product $product)
@@ -55,11 +63,6 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect('/products');
-    }
-
-    public function search()
-    {
-        return Product::all();
     }
 
     public function validateRequest()

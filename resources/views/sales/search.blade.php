@@ -32,8 +32,8 @@
                                     <td><a href="{{ $sale->path() }}" class="btn btn-small btn-success"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                             @empty
-                                <tr class="table info">
-                                    <td align="center">Nenhuma venda registrada</td>
+                                <tr class="table-info">
+                                    <td colspan="6" align="center">Nenhuma venda encontrada</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -58,16 +58,16 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <label for="">Início</label>
-                            <input name="start_date" type="date" class="form-control mb-3">
+                            <input name="start_date" value="{{ Request::get('start_date') }}" type="date" class="form-control mb-3">
                         </div>
                         <div class="col-12">
                             <label for="">Fim</label>
-                            <input name="end_date" type="date" class="form-control mb-3">
+                            <input name="end_date" value="{{ Request::get('end_date') }}" type="date" class="form-control mb-3">
                         </div>
                         <div class="col-12 mb-3">
                             <label for="formControlRange">Por preço:</label>
-                            <input class="form-control" type="range" name="total" id="maxPriceInputId" value="1" min="1" max="1000" oninput="maxPriceOutputId.value = maxPriceInputId.value">
-                            <output name="maxPriceOutputName" id="maxPriceOutputId">1</output> R$
+                            <input class="form-control" type="range" name="total" id="maxPriceInputId" value="{{ Request::get('total')}}" min="1" max="1000" oninput="maxPriceOutputId.value = maxPriceInputId.value">
+                            <output name="maxPriceOutputName" id="maxPriceOutputId">{{ Request::get('total')}}</output> R$
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-filter"></i> Filtrar</button>

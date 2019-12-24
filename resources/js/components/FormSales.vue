@@ -60,8 +60,8 @@
                 </div>
 
                 <div class="card-body">
-                    <button type="submit" class="btn btn-primary btn-block" @click.prevent="validateForm" :disabled="(items.length == 0)">Finish Sales</button>
-                    <a href="/" class="btn btn-link btn-block">Cancel</a>
+                    <button type="submit" class="btn btn-primary btn-block" @click.prevent="validateForm" :disabled="(items.length == 0)">Finalizar venda</button>
+                    <a href="/" class="btn btn-link btn-block">cancelar</a>
                 </div>
             </div>
         </div>
@@ -70,143 +70,143 @@
 </template>
 
 <script>
-import InputCustomer from './InputCustomer.vue'
-import ProductSearch from './ProductSearch.vue';
-import SalesItem from './SalesItem.vue';
+import InputCustomer from "./InputCustomer.vue";
+import ProductSearch from "./ProductSearch.vue";
+import SalesItem from "./SalesItem.vue";
 
 export default {
-    components: {
-        ProductSearch,
-        SalesItem,
-        InputCustomer
+  components: {
+    ProductSearch,
+    SalesItem,
+    InputCustomer
+  },
+  data() {
+    return {
+      payment: {},
+      form: {
+        customer_id: null
+      },
+      items: [],
+      customers: []
+    };
+  },
+  computed: {
+    totalAmount: function() {
+      return _.sumBy(this.items, "subtotal_unit_price");
     },
-    data () {
-        return {
-            payment: {
-            },
-            form: {
-                customer_id: null
-            },
-            items: [],
-            customers: [],
-        }
-    },
-     computed: {
-        totalAmount: function(){
-            return _.sumBy(this.items, 'subtotal_unit_price')
-        },
-        amountDue: function() {
-            return this.totalAmount
-        }
-    },
-    methods: {
-        addItem (item) {
-            let ids = _.map(this.items, 'id')
-
-            if (!_.includes(ids, item.id)) {
-                this.$set(item, 'quantity', 1)
-                this.$set(item, 'discount', 0)
-                this.$set(item, 'subtotal_unit_price', (item.price * item.quantity))
-
-                this.items.push(item)
-            } else {
-                let index = _.findIndex(this.items, function(i) {
-                    return i.id == item.id
-                })
-
-                let currentProduct = this.items[index]
-
-                currentProduct.quantity = currentProduct.quantity + 1
-            }
-        },
-        removeItem (item) {
-            let index = _.findIndex(this.items, function(i) {
-                return i.id == item.id
-            })
-
-            let currentProduct = this.items[index]
-
-            if (currentProduct.quantity - 1 == 0) {
-                this.deleteItem(currentProduct)
-            } else {
-                currentProduct.quantity = currentProduct.quantity - 1
-            }
-        },
-        deleteItem (item) {
-            let index = _.findIndex(this.items, function(i) {
-                return i.id == item.id
-            })
-
-            this.items.splice(index, 1)
-        },
-        clearForm () {
-            this.form = {
-                customer_id: null
-            }
-            this.items = []
-            this.salesPayments = []
-
-            this.$bus.$emit('inputCustomerCleared')
-        },
-        validateForm () {
-            const that = this
-
-            this.$validator.validateAll().then((result) => {
-                if (result) {
-                    that.store()
-                }
-            });
-        },
-        // main action
-        store () {
-            const that = this
-
-            let formRequest = this.form
-            formRequest.items = _.map(this.items, (item) => {
-                return {
-                    product_id: item.id,
-                    price: item.price,
-                    discount: item.discount,
-                    quantity: item.quantity
-                }
-            })
-
-            axios.post('/api/sales', formRequest).then(res => {
-                that.$swal({
-                    title: 'Success!',
-                    text: res.data.message,
-                    type: 'success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                }).then(swalRes => {
-                });
-
-                that.clearForm()
-            })
-        }
-    },
-    mounted () {
-         const that = this
-
-        this.$bus.$on('productSelected', event => {
-            let item = event.product
-
-            if (item) {
-                this.addItem(item)
-            }
-        })
-
-        this.$bus.$on('customerSelected', event => {
-            let customer = event.customer
-
-            if (customer) {
-                this.form.customer_id = customer.id
-            }
-        })
-
-        axios.get('/api/customers/search').then(res => {
-            that.customers = res.data
-        })
+    amountDue: function() {
+      return this.totalAmount;
     }
-}
+  },
+  methods: {
+    addItem(item) {
+      let ids = _.map(this.items, "id");
+
+      if (!_.includes(ids, item.id)) {
+        this.$set(item, "quantity", 1);
+        this.$set(item, "discount", 0);
+        this.$set(item, "subtotal_unit_price", item.price * item.quantity);
+
+        this.items.push(item);
+      } else {
+        let index = _.findIndex(this.items, function(i) {
+          return i.id == item.id;
+        });
+
+        let currentProduct = this.items[index];
+
+        currentProduct.quantity = currentProduct.quantity + 1;
+      }
+    },
+    removeItem(item) {
+      let index = _.findIndex(this.items, function(i) {
+        return i.id == item.id;
+      });
+
+      let currentProduct = this.items[index];
+
+      if (currentProduct.quantity - 1 == 0) {
+        this.deleteItem(currentProduct);
+      } else {
+        currentProduct.quantity = currentProduct.quantity - 1;
+      }
+    },
+    deleteItem(item) {
+      let index = _.findIndex(this.items, function(i) {
+        return i.id == item.id;
+      });
+
+      this.items.splice(index, 1);
+    },
+    clearForm() {
+      this.form = {
+        customer_id: null
+      };
+      this.items = [];
+      this.salesPayments = [];
+
+      this.$bus.$emit("inputCustomerCleared");
+    },
+    validateForm() {
+      const that = this;
+
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          that.store();
+        }
+      });
+    },
+    // main action
+    store() {
+      const that = this;
+
+      let formRequest = this.form;
+      formRequest.items = _.map(this.items, item => {
+        return {
+          product_id: item.id,
+          price: item.price,
+          discount: item.discount,
+          quantity: item.quantity
+        };
+      });
+
+      axios.post("/api/sales", formRequest).then(res => {
+        that
+          .$swal({
+            title: "Venda confirmada!",
+            text: res.data.message,
+            type: "success",
+            showConfirmButton: false,
+            timer: 1500
+          })
+          .then(swalRes => {});
+
+        that.clearForm();
+      });
+    }
+  },
+  mounted() {
+    const that = this;
+
+    this.$bus.$on("productSelected", event => {
+      let item = event.product;
+
+      if (item) {
+        this.addItem(item);
+      }
+    });
+
+    this.$bus.$on("customerSelected", event => {
+      let customer = event.customer;
+
+      if (customer) {
+        this.form.customer_id = customer.id;
+      }
+    });
+
+    axios.get("/api/customers/search").then(res => {
+      that.customers = res.data;
+    });
+  }
+};
 </script>

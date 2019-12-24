@@ -18,7 +18,7 @@ class CreateSaleItemsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('sale_id');
             $table->bigInteger('quantity');
-            $table->decimal('price', 4, 2);
+            $table->decimal('price', 10, 2);
             $table->float('discount');
             $table->timestamps();
         });

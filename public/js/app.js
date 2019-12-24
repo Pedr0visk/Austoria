@@ -1903,15 +1903,15 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         email: null,
         phone: null,
-        address: null
+        dob: null
       }
     };
   },
   methods: {
     store: function store() {
       var that = this;
-      axios.post('/api/customers', this.form).then(function (res) {
-        that.$bus.$emit('customerCreated', {
+      axios.post("/api/customers", this.form).then(function (res) {
+        that.$bus.$emit("customerCreated", {
           customer: res.data
         });
         that.clearForm();
@@ -1922,17 +1922,17 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         email: null,
         phone: null,
-        address: null
+        dob: null
       };
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    this.$bus.$on('saveFormCreateCustomer', function (event) {
+    this.$bus.$on("saveFormCreateCustomer", function (event) {
       _this.store();
     });
-    this.$bus.$on('clearFormCreateCustomer', function (event) {
+    this.$bus.$on("clearFormCreateCustomer", function (event) {
       _this.clearForm();
     });
   }
@@ -2044,7 +2044,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     totalAmount: function totalAmount() {
-      return _.sumBy(this.items, 'subtotal_unit_price');
+      return _.sumBy(this.items, "subtotal_unit_price");
     },
     amountDue: function amountDue() {
       return this.totalAmount;
@@ -2052,12 +2052,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addItem: function addItem(item) {
-      var ids = _.map(this.items, 'id');
+      var ids = _.map(this.items, "id");
 
       if (!_.includes(ids, item.id)) {
-        this.$set(item, 'quantity', 1);
-        this.$set(item, 'discount', 0);
-        this.$set(item, 'subtotal_unit_price', item.price * item.quantity);
+        this.$set(item, "quantity", 1);
+        this.$set(item, "discount", 0);
+        this.$set(item, "subtotal_unit_price", item.price * item.quantity);
         this.items.push(item);
       } else {
         var index = _.findIndex(this.items, function (i) {
@@ -2094,7 +2094,7 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.items = [];
       this.salesPayments = [];
-      this.$bus.$emit('inputCustomerCleared');
+      this.$bus.$emit("inputCustomerCleared");
     },
     validateForm: function validateForm() {
       var that = this;
@@ -2116,11 +2116,11 @@ __webpack_require__.r(__webpack_exports__);
           quantity: item.quantity
         };
       });
-      axios.post('/api/sales', formRequest).then(function (res) {
+      axios.post("/api/sales", formRequest).then(function (res) {
         that.$swal({
-          title: 'Success!',
+          title: "Venda confirmada!",
           text: res.data.message,
-          type: 'success',
+          type: "success",
           showConfirmButton: false,
           timer: 1500
         }).then(function (swalRes) {});
@@ -2132,21 +2132,21 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     var that = this;
-    this.$bus.$on('productSelected', function (event) {
+    this.$bus.$on("productSelected", function (event) {
       var item = event.product;
 
       if (item) {
         _this.addItem(item);
       }
     });
-    this.$bus.$on('customerSelected', function (event) {
+    this.$bus.$on("customerSelected", function (event) {
       var customer = event.customer;
 
       if (customer) {
         _this.form.customer_id = customer.id;
       }
     });
-    axios.get('/api/customers/search').then(function (res) {
+    axios.get("/api/customers/search").then(function (res) {
       that.customers = res.data;
     });
   }
@@ -2220,11 +2220,11 @@ Vue.prototype.$http = axios;
     return {
       // The source url
       // (required)
-      src: '/api/customers/search',
+      src: "/api/customers/search",
       // The data that would be sent by request
       // (optional)
       data: {
-        status: 'active'
+        status: "active"
       },
       // Limit the number of items which is shown at the list
       // (optional)
@@ -2238,14 +2238,14 @@ Vue.prototype.$http = axios;
       // Override the default value (`q`) of query parameter name
       // Use a falsy value for RESTful query
       // (optional)
-      queryParamName: 'name'
+      queryParamName: "name"
     };
   },
   methods: {
     // The callback function which is triggered when the user hits on an item
     // (required)
     onHit: function onHit(item) {
-      this.$bus.$emit('customerSelected', {
+      this.$bus.$emit("customerSelected", {
         customer: item
       });
       this.reset();
@@ -2260,25 +2260,25 @@ Vue.prototype.$http = axios;
     },
     activeClass: function activeClass(index) {
       return {
-        'active': this.current === index
+        active: this.current === index
       };
     },
     cancelCustomer: function cancelCustomer() {
-      this.$bus.$emit('clearFormCreateCustomer');
+      this.$bus.$emit("clearFormCreateCustomer");
     },
     storeCustomer: function storeCustomer() {
-      this.$bus.$emit('saveFormCreateCustomer');
+      this.$bus.$emit("saveFormCreateCustomer");
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    this.$bus.$on('customerCreated', function (event) {
+    this.$bus.$on("customerCreated", function (event) {
       _this.onHit(event.customer);
 
-      $('#customerModal').modal('hide');
+      $("#customerModal").modal("hide");
     });
-    this.$bus.$on('inputCustomerCleared', function (event) {
+    this.$bus.$on("inputCustomerCleared", function (event) {
       _this.reset();
     });
   }
@@ -2371,7 +2371,7 @@ Vue.prototype.$http = axios;
     return {
       // The source url
       // (required)
-      src: '/api/products/search',
+      src: "/api/products/search",
       // The data that would be sent by request
       // (optional)
       data: {// status: 'active'
@@ -2388,7 +2388,7 @@ Vue.prototype.$http = axios;
       // Override the default value (`q`) of query parameter name
       // Use a falsy value for RESTful query
       // (optional)
-      queryParamName: 'q',
+      queryParamName: "q",
       products: []
     };
   },
@@ -2396,7 +2396,7 @@ Vue.prototype.$http = axios;
     // The callback function which is triggered when the user hits on an item
     // (required)
     onHit: function onHit(item) {
-      this.$bus.$emit('productSelected', {
+      this.$bus.$emit("productSelected", {
         product: item
       });
       this.reset();
@@ -2410,14 +2410,14 @@ Vue.prototype.$http = axios;
     },
     activeClass: function activeClass(index) {
       return {
-        'active': this.current === index
+        active: this.current === index
       };
     }
   },
   mounted: function mounted() {
     var that = this;
-    document.getElementById('search-box').focus();
-    axios.get('/api/products').then(function (res) {
+    document.getElementById("search-box").focus();
+    axios.get("/api/products").then(function (res) {
       that.products = res.data;
     });
   }
@@ -51949,7 +51949,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("form", [
     _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "name" } }, [_vm._v("Name *")]),
+      _c("label", { attrs: { for: "name" } }, [_vm._v("Nome *")]),
       _vm._v(" "),
       _c("input", {
         directives: [
@@ -51961,7 +51961,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control",
-        attrs: { type: "text", id: "name", placeholder: "Customer name" },
+        attrs: { type: "text", id: "name", placeholder: "Igor Paiva..." },
         domProps: { value: _vm.form.name },
         on: {
           input: function($event) {
@@ -51989,7 +51989,11 @@ var render = function() {
           }
         ],
         staticClass: "form-control",
-        attrs: { type: "text", id: "email", placeholder: "Customer email" },
+        attrs: {
+          type: "text",
+          id: "email",
+          placeholder: "Example@email.com..."
+        },
         domProps: { value: _vm.form.email },
         on: {
           input: function($event) {
@@ -52005,7 +52009,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "phone" } }, [_vm._v("Phone Number *")]),
+      _c("label", { attrs: { for: "phone" } }, [_vm._v("Telefone *")]),
       _vm._v(" "),
       _c("input", {
         directives: [
@@ -52017,11 +52021,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "phone",
-          placeholder: "Customer phone number"
-        },
+        attrs: { type: "text", id: "phone", placeholder: "(24) 99999-9999" },
         domProps: { value: _vm.form.phone },
         on: {
           input: function($event) {
@@ -52037,26 +52037,26 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "address" } }, [_vm._v("Adress")]),
+      _c("label", { attrs: { for: "dob" } }, [_vm._v("Data de Nascimento")]),
       _vm._v(" "),
       _c("input", {
         directives: [
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.form.address,
-            expression: "form.address"
+            value: _vm.form.dob,
+            expression: "form.dob"
           }
         ],
         staticClass: "form-control",
-        attrs: { type: "text", id: "address", placeholder: "Customer address" },
-        domProps: { value: _vm.form.address },
+        attrs: { type: "text", id: "dob", placeholder: "Data de nascimento" },
+        domProps: { value: _vm.form.dob },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.$set(_vm.form, "address", $event.target.value)
+            _vm.$set(_vm.form, "dob", $event.target.value)
           }
         }
       }),
@@ -52218,13 +52218,13 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Finish Sales")]
+            [_vm._v("Finalizar venda")]
           ),
           _vm._v(" "),
           _c(
             "a",
             { staticClass: "btn btn-link btn-block", attrs: { href: "/" } },
-            [_vm._v("Cancel")]
+            [_vm._v("cancelar")]
           )
         ])
       ])
@@ -52423,7 +52423,7 @@ var render = function() {
                     attrs: { type: "button", "data-dismiss": "modal" },
                     on: { click: _vm.cancelCustomer }
                   },
-                  [_vm._v("Close")]
+                  [_vm._v("Fechar")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -52433,7 +52433,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: { click: _vm.storeCustomer }
                   },
-                  [_vm._v("Save")]
+                  [_vm._v("Salvar")]
                 )
               ])
             ])
@@ -52524,7 +52524,7 @@ var render = function() {
       attrs: {
         id: "search-box",
         type: "text",
-        placeholder: "Search product...",
+        placeholder: "Pesquisar produto...",
         autocomplete: "off"
       },
       domProps: { value: _vm.query },
@@ -52618,8 +52618,6 @@ var render = function() {
       0
     ),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
     _c(
       "div",
       {
@@ -52638,10 +52636,10 @@ var render = function() {
           { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c("table", { staticClass: "table mb-0" }, [
-                _vm._m(2),
+                _vm._m(1),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -52683,7 +52681,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(3)
+              _vm._m(2)
             ])
           ]
         )
@@ -52692,25 +52690,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-append" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#productModal"
-          }
-        },
-        [_vm._v("Advance Search")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

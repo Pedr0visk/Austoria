@@ -15,8 +15,7 @@ class CustomerManagementTest extends TestCase
     /** @test */
     public function a_customer_can_be_created()
     {
-        $this->withoutExceptionHandling();
-        $response = $this->post('/customers', $this->data());
+        $this->post('/customers', $this->data());
 
         $customer = Customer::all();
 
@@ -58,7 +57,7 @@ class CustomerManagementTest extends TestCase
 
         $response = $this->patch($customer->path(), [
             'name' => 'Pedro',
-            'dob' => '09/12/1995',
+            'dob' => '1995-12-09',
             'phone' => '21988970938',
             'email' => 'pbelloto@gmail.com',
         ]);
@@ -69,7 +68,7 @@ class CustomerManagementTest extends TestCase
     private function data() {
         return [
             'name' => 'Customer name',
-            'dob' => '31/08/1997',
+            'dob' => '1997-08-31',
             'phone' => '24998869574',
             'email' => 'pedro357bm@gmail.com',
         ];

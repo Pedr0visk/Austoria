@@ -1,6 +1,6 @@
 <template>
     <div class="input-group mb-3">
-        <input id="search-box" type="text" class="form-control" placeholder="Search product..."
+        <input id="search-box" type="text" class="form-control" placeholder="Pesquisar produto..."
             autocomplete="off"
             v-model="query"
             @keydown.down="down"
@@ -14,9 +14,9 @@
             <a href="#" v-for="(item, $item) in items" :key="$item" :class="activeClass($item)" @mousedown="hit" @mousemove="setActive($item)" v-text="item.name" class="list-group-item list-group-item-action"></a>
         </ul>
 
-        <div class="input-group-append">
+        <!-- <div class="input-group-append">
             <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#productModal">Advance Search</button>
-        </div>
+        </div> -->
 
         <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -48,7 +48,7 @@
                                     <button class="btn btn-sm btn-info" v-on:click="onHit(product)">Select</button>
                                 </td>
                             </tr>
-                        
+
                             <tr class="table-info" v-else>
                                 <td colspan="5" align="center">Products empty or not found.</td>
                             </tr>
@@ -65,77 +65,77 @@
 </template>
 
 <script>
-import VueTypeahead from 'vue-typeahead'
+import VueTypeahead from "vue-typeahead";
 
-Vue.prototype.$http = axios
+Vue.prototype.$http = axios;
 
 export default {
-    extends: VueTypeahead,
-    data () {
-        return {
-            // The source url
-            // (required)
-            src: '/api/products/search',
+  extends: VueTypeahead,
+  data() {
+    return {
+      // The source url
+      // (required)
+      src: "/api/products/search",
 
-            // The data that would be sent by request
-            // (optional)
-            data: {
-                // status: 'active'
-            },
+      // The data that would be sent by request
+      // (optional)
+      data: {
+        // status: 'active'
+      },
 
-            // Limit the number of items which is shown at the list
-            // (optional)
-            limit: 5,
+      // Limit the number of items which is shown at the list
+      // (optional)
+      limit: 5,
 
-            // The minimum character length needed before triggering
-            // (optional)
-            minChars: 3,
+      // The minimum character length needed before triggering
+      // (optional)
+      minChars: 3,
 
-            // Highlight the first item in the list
-            // (optional)
-            selectFirst: true,
+      // Highlight the first item in the list
+      // (optional)
+      selectFirst: true,
 
-            // Override the default value (`q`) of query parameter name
-            // Use a falsy value for RESTful query
-            // (optional)
-            queryParamName: 'q',
+      // Override the default value (`q`) of query parameter name
+      // Use a falsy value for RESTful query
+      // (optional)
+      queryParamName: "q",
 
-            products: [],
-        }
+      products: []
+    };
+  },
+  methods: {
+    // The callback function which is triggered when the user hits on an item
+    // (required)
+    onHit(item) {
+      this.$bus.$emit("productSelected", {
+        product: item
+      });
+
+      this.reset();
     },
-    methods: {
-        // The callback function which is triggered when the user hits on an item
-        // (required)
-        onHit (item) {
-            this.$bus.$emit('productSelected', {
-                product: item
-            })
 
-            this.reset()
-        },
-
-        // The callback function which is triggered when the response data are received
-        // (optional)
-        prepareResponseData (data) {
-            return _.map(data, d => {
-                return d
-            })
-        },
-
-        activeClass (index) {
-            return {
-                'active': this.current === index
-            }
-        }
+    // The callback function which is triggered when the response data are received
+    // (optional)
+    prepareResponseData(data) {
+      return _.map(data, d => {
+        return d;
+      });
     },
-    mounted() {
-        const that = this
 
-        document.getElementById('search-box').focus()
-
-        axios.get('/api/products').then(res => {
-            that.products = res.data
-        });
+    activeClass(index) {
+      return {
+        active: this.current === index
+      };
     }
-}
+  },
+  mounted() {
+    const that = this;
+
+    document.getElementById("search-box").focus();
+
+    axios.get("/api/products").then(res => {
+      that.products = res.data;
+    });
+  }
+};
 </script>

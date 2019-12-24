@@ -20,4 +20,21 @@ class CustomerController extends Controller
 
         return response()->json($customers);
     }
+
+    public function store()
+    {
+        $customer = Customer::create($this->validateRequest());
+
+        return response()->json($customer);
+    }
+
+    protected function validateRequest()
+    {
+        return request()->validate([
+            'name'      => 'required',
+            'dob'       => 'required',
+            'phone'     => 'required',
+            'email'     => 'nullable',
+        ]);
+    }
 }

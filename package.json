@@ -27,5 +27,8 @@
         "vue-currency-filter": "^2.2.6",
         "vue-sweetalert2": "^1.4.2",
         "vue-typeahead": "^2.3.2"
+    },
+    "dependencies": {
+        "chart.js": "^2.9.3"
     }
 }

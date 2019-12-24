@@ -12,6 +12,11 @@ class Sale extends Model
 
     public static $rules = ['customer_id' => 'required'];
 
+    public function path()
+    {
+        return '/sales/' . $this->id;
+    }
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);

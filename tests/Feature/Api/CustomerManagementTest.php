@@ -13,21 +13,31 @@ class CustomerManagementTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function customer_can_be_searched()
+    public function a_customer_can_be_created_from_api()
     {
-        $this->withoutExceptionHandling();
+        $this->post('/api/customers', $this->data());
 
-        $this->post('/customers', $this->data());
+        $customer = Customer::all();
 
-        $customers = $this->get('/api/customers/search?name=cus');
-
-        $this->assertCount(1, $customers);
+        $this->assertCount(1, $customer);
+        $this->assertInstanceOf(Carbon::class, $customer->first()->dob);
+        $this->assertEquals('1997/31/08', $customer->first()->dob->format('Y/d/m'));
     }
+
+    // /** @test */
+    // public function customer_can_be_searched_from_api()
+    // {
+    //     $customer = $this->post('/api/customers', $this->data());
+
+    //     $customers = $this->get('/api/customers/search?name=cus');
+
+    //     $this->assertCount(1, $customers);
+    // }
 
     private function data() {
         return [
             'name' => 'Customer name',
-            'dob' => '31/08/1997',
+            'dob' => '1997-08-31',
             'phone' => '24998869574',
             'email' => 'pedro357bm@gmail.com',
         ];

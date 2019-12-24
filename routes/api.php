@@ -23,4 +23,5 @@ Route::get('products', 'ProductController@index');
 Route::post('/sales', 'SaleController@store');
 
 Route::get('customers/search', 'CustomerController@search');
+Route::post('customers', 'CustomerController@store');
 

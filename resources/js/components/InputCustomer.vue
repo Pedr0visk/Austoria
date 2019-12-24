@@ -31,8 +31,8 @@
                         <form-create-customer ref="formCustomerComponent"></form-create-customer>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="cancelCustomer">Close</button>
-                        <button type="button" class="btn btn-primary" v-on:click="storeCustomer">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" v-on:click="cancelCustomer">Fechar</button>
+                        <button type="button" class="btn btn-primary" v-on:click="storeCustomer">Salvar</button>
                     </div>
                 </div>
             </div>
@@ -41,87 +41,87 @@
 </template>
 
 <script>
-import VueTypeahead from 'vue-typeahead'
-import FormCreateCustomer from './FormCreateCustomer.vue'
+import VueTypeahead from "vue-typeahead";
+import FormCreateCustomer from "./FormCreateCustomer.vue";
 
-Vue.prototype.$http = axios
+Vue.prototype.$http = axios;
 
 export default {
-    extends: VueTypeahead,
-    components: { FormCreateCustomer },
-    data () {
-        return {
-            // The source url
-            // (required)
-            src: '/api/customers/search',
+  extends: VueTypeahead,
+  components: { FormCreateCustomer },
+  data() {
+    return {
+      // The source url
+      // (required)
+      src: "/api/customers/search",
 
-            // The data that would be sent by request
-            // (optional)
-            data: {
-                status: 'active'
-            },
+      // The data that would be sent by request
+      // (optional)
+      data: {
+        status: "active"
+      },
 
-            // Limit the number of items which is shown at the list
-            // (optional)
-            limit: 5,
+      // Limit the number of items which is shown at the list
+      // (optional)
+      limit: 5,
 
-            // The minimum character length needed before triggering
-            // (optional)
-            minChars: 3,
+      // The minimum character length needed before triggering
+      // (optional)
+      minChars: 3,
 
-            // Highlight the first item in the list
-            // (optional)
-            selectFirst: true,
+      // Highlight the first item in the list
+      // (optional)
+      selectFirst: true,
 
-            // Override the default value (`q`) of query parameter name
-            // Use a falsy value for RESTful query
-            // (optional)
-            queryParamName: 'name'
-        }
+      // Override the default value (`q`) of query parameter name
+      // Use a falsy value for RESTful query
+      // (optional)
+      queryParamName: "name"
+    };
+  },
+  methods: {
+    // The callback function which is triggered when the user hits on an item
+    // (required)
+    onHit(item) {
+      this.$bus.$emit("customerSelected", {
+        customer: item
+      });
+
+      this.reset();
+
+      this.query = item.name;
     },
-    methods: {
-        // The callback function which is triggered when the user hits on an item
-        // (required)
-        onHit (item) {
-            this.$bus.$emit('customerSelected', {
-                customer: item
-            })
 
-            this.reset()
-
-            this.query = item.name
-        },
-
-        // The callback function which is triggered when the response data are received
-        // (optional)
-        prepareResponseData (data) {
-            return _.map(data, d => {
-                return d
-            })
-        },
-
-        activeClass (index) {
-            return {
-                'active': this.current === index
-            }
-        },
-        cancelCustomer () {
-            this.$bus.$emit('clearFormCreateCustomer');
-        },
-        storeCustomer () {
-            this.$bus.$emit('saveFormCreateCustomer');
-        }
+    // The callback function which is triggered when the response data are received
+    // (optional)
+    prepareResponseData(data) {
+      return _.map(data, d => {
+        return d;
+      });
     },
-    mounted () {
-        this.$bus.$on('customerCreated', event => {
-            this.onHit(event.customer)
 
-            $('#customerModal').modal('hide');
-        })
-
-        this.$bus.$on('inputCustomerCleared', event => {
-            this.reset()
-        })
+    activeClass(index) {
+      return {
+        active: this.current === index
+      };
+    },
+    cancelCustomer() {
+      this.$bus.$emit("clearFormCreateCustomer");
+    },
+    storeCustomer() {
+      this.$bus.$emit("saveFormCreateCustomer");
     }
-}
+  },
+  mounted() {
+    this.$bus.$on("customerCreated", event => {
+      this.onHit(event.customer);
+
+      $("#customerModal").modal("hide");
+    });
+
+    this.$bus.$on("inputCustomerCleared", event => {
+      this.reset();
+    });
+  }
+};
 </script>
