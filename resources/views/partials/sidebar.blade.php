@@ -1,6 +1,19 @@
 <div class="scrollbar-sidebar">
     <div class="app-sidebar__inner">
         <ul class="vertical-nav-menu">
+            <li class="app-sidebar__heading">Vendas</li>
+            <li>
+                <a href="{{ route('sales.create') }}" class="{{ (request()->is('sales.create')) ? 'mm-active' : '' }} ">
+                    <i class="metismenu-icon pe-7s-plus"></i>
+                    Nova venda
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('sales.index') }}" class="{{ (request()->is('sales.create')) ? 'mm-active' : '' }} ">
+                    <i class="metismenu-icon pe-7s-display2"></i>
+                    Lista de vendas
+                </a>
+            </li>
             <li class="app-sidebar__heading">Dashboards</li>
             <li>
                 <a href="{{ route('dashboard') }}" class="{{ (request()->is('dashboard*')) ? 'mm-active' : '' }} ">

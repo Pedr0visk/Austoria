@@ -51,6 +51,11 @@
     <div class="col-md-4">
         <div class="card mb-3">
             <!-- card header -->
+            <div class="card-header">
+                <a href="#" class="btn btn-info mr-2"><i class="fa fa-folder-open"></i></a>
+                <a href="#" class="btn btn-warning mr-2"><i class="fa fa-download"></i></a>
+                <a href="#" class="btn btn-danger"><i class="fa fa-edit"></i></a>
+            </div>
             <div class="card-header">Filtro</div>
             <!-- card body -->
             <div class="card-body pb-0">

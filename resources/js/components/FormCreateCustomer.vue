@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="dob">Data de Nascimento</label>
-            <input v-model="form.dob" type="text" class="form-control" id="dob" placeholder="Data de nascimento">
+            <input v-model="form.dob" type="date" class="form-control" id="dob" placeholder="Data de nascimento">
             <div class="invalid-feedback"></div>
         </div>
     </form>
