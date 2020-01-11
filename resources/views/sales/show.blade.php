@@ -25,7 +25,7 @@
                         @foreach($sale->items as $key => $item)
                             <tr>
                                 <td width="2%">{{ $item->quantity }}x</td>
-                                <td>{{ $item->product->name }}</td>
+                                <td>{{ $item->product ? $item->product->name : 'Produto excluído' }}</td>
                                 <td align="center">{{ $item->price }} R$</td>
                                 <td align="center">{{ $item->subtotalAmount }} R$</td>
                                 <td align="center">{{ $item->discount }} %</td>
