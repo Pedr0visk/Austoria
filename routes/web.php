@@ -9,10 +9,12 @@ Route::delete('/products/{product}', 'ProductController@destroy')->name('product
 
 Route::get('/categories', 'CategoryController@index')->name('categories.index');
 Route::post('/categories', 'CategoryController@store')->name('categories.store');
+Route::delete('/categories/{category}', 'CategoryController@destroy')->name('categories.destroy');
 
 Route::get('/customers', 'CustomerController@index')->name('customers.index');
 Route::post('/customers', 'CustomerController@store')->name('customers.store');
-Route::patch('/customers/{customer}', 'CustomerController@update');
+Route::patch('/customers/{customer}', 'CustomerController@update')->name('customers.update');
+Route::delete('/customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
 
 Route::get('/sales/search', 'SaleController@search')->name('sales.search');
 Route::get('/sales/create', 'SaleController@create')->name('sales.create');

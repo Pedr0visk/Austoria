@@ -52049,7 +52049,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control",
-        attrs: { type: "text", id: "dob", placeholder: "Data de nascimento" },
+        attrs: { type: "date", id: "dob", placeholder: "Data de nascimento" },
         domProps: { value: _vm.form.dob },
         on: {
           input: function($event) {

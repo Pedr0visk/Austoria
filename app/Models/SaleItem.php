@@ -25,7 +25,7 @@ class SaleItem extends Model
         $total = $this->subtotalAmount;
         $total -= $total * ($this->discount/100);
 
-        return $total;
+        return round($total, 2);
     }
 
     public function product()

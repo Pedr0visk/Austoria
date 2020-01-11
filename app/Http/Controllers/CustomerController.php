@@ -33,6 +33,14 @@ class CustomerController extends Controller
         $customer->update($this->validateRequest());
     }
 
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
+
+        return redirect()->route('customers.index')
+            ->with('success', 'Cliente deletado com sucesso');
+    }
+
     protected function validateRequest()
     {
         return request()->validate([

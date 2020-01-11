@@ -33,7 +33,7 @@
                                 </tr>
                             @empty
                                 <tr class="table info">
-                                    <td align="center">Nenhuma venda registrada</td>
+                                    <td colspan="7" align="center">Items de venda vazio.</td>
                                 </tr>
                             @endforelse
                         </tbody>

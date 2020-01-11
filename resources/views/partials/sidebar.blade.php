@@ -52,13 +52,13 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="components-tabs.html">
+                        <a href="{{ route('categories.index') }}">
                             <i class="metismenu-icon">
                             </i>Nova categoria
                         </a>
                     </li>
                     <li>
-                        <a href="components-accordions.html">
+                        <a href="{{ route('categories.index') }}">
                             <i class="metismenu-icon">
                             </i>Listar categorias
                         </a>

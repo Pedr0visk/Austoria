@@ -19,7 +19,6 @@ class SaleController extends Controller
     {
         return request()->validate([
             'customer_id' => 'required',
-            'discount'    => 'nullable',
             'items'       => 'required|array|min:1'
         ]);
     }

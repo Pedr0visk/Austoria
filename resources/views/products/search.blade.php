@@ -26,12 +26,14 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->category->name }}</td>
-                                    <!-- <td>
-                                        <a href="{{ route('products.edit', $product) }}"><i class="fa fa-pencil"></i></a>
-                                        <delete-action action="{{ route('products.destroy', $product) }}" class="ml-2 text-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </delete-action>
-                                    </td> -->
+
+                                    <td>
+                                        <form method="post" action="{{ route('products.destroy', $product->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr class="table-info">

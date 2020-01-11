@@ -1,7 +1,15 @@
 @extends('layouts.app')
 
 @section('main-content')
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div class="row">
+
     <div class="col-md-8 col-sm-12">
         <!-- card -->
         <div class="card mb-3">
@@ -26,11 +34,14 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->category->name }}</td>
-                                    <!-- <td>
-                                        <delete-action action="{{ route('products.destroy', $product) }}" class="ml-2 text-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </delete-action>
-                                    </td> -->
+
+                                    <td>
+                                        <form method="post" action="{{ route('products.destroy', $product->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr class="table-info">
@@ -103,11 +114,6 @@
                         </select>
                     </div>
 
-                    <div class="form-group p-2">
-                        <label for="enable_maxPrice">Habilitar filtro</label>
-                        <input class="form-control" type="checkbox" name="enable_maxPrice" id="enableMaxPrice">
-                    </div>
-
                     <div class="form-group mb-3 p-2">
                         <label for="">Até:</label>
                         <input class="form-control" type="range" name="max_price" id="maxPriceInputId" value="" min="1" max="1000" oninput="maxPriceOutputId.value = maxPriceInputId.value">
@@ -115,6 +121,26 @@
                     </div>
 
                     <button class="btn btn-success btn-block mb-3" type="submit">Filtrar <i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <!-- card header -->
+            <div class="card-header">Adicionar Categoria</div>
+            <!-- card body -->
+            <div class="card-body pb-0">
+                <form action="{{ route('products.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group row">
+                        <div class="col-12 mb-3">
+                            <input required type="text" name="name" placeholder="nome" class="form-control">
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Adicionar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

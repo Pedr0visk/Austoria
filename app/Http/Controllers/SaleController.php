@@ -13,7 +13,7 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales = Sale::with('customer:id,name')->with('items')->paginate(3);
+        $sales = Sale::with('customer:id,name')->with('items')->paginate();
 
         return view('sales.index')
             ->withSales($sales);

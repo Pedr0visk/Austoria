@@ -11,6 +11,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::query()->with('category');
+
         $categories = Category::all();
 
         $products = $products->paginate();
@@ -62,7 +63,7 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect('/products');
+        return redirect('/products')->with('success', 'Produto deletado com sucesso');
     }
 
     public function validateRequest()

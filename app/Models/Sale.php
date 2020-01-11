@@ -46,7 +46,7 @@ class Sale extends Model
             return $item->subtotalAmount;
         });
 
-        return $subtotal->sum();
+        return round($subtotal->sum(), 2);
     }
 
     public function getTotalAttribute()
@@ -55,6 +55,6 @@ class Sale extends Model
             return $item->totalAmount;
         });
 
-        return $total->sum();
+        return round($total->sum(), 2);
     }
 }
