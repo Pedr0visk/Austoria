@@ -57,4 +57,5 @@ class Sale extends Model
 
         return round($total->sum(), 2);
     }
+
 }

@@ -58,7 +58,7 @@
             <div class="card-header">Filtrar Produtos</div>
             <!-- card body -->
             <div class="card-body pb-0">
-                <form action="{{ route('products.index') }}">
+                <form action="{{ route('products.search') }}">
                     <div class="form-group mb-3 p-2">
                         <input id="search-box" name="name" type="text" class="form-control" placeholder="Pesquisar produto..." value="{{ Request::get('name') }}">
                     </div>

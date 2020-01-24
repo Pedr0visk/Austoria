@@ -25,7 +25,7 @@
                             @forelse($sales as $key => $sale)
                                 <tr>
                                     <td>{{ $sales->firstItem() + $key }}</td>
-                                    <td>{{ $sale->customer ? $sale->customer->name : 'Cliente excluido' }}</td>
+                                    <td>{{ $sale->customer()->withTrashed()->first()->name }}</td>
                                     <td>{{ $sale->subtotal }}</td>
                                     <td>{{ $sale->total }}</td>
                                     <td>{{ $sale->created_at->format('d/m/Y') }}</td>

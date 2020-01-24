@@ -13,7 +13,13 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales = Sale::with('customer:id,name')->with('items')->paginate();
+        $currentMonth = new Carbon();
+
+        $sales = Sale::with('customer:id,name')
+             ->with('items')
+             ->whereMonth('created_at', $currentMonth)
+             ->orderBy('created_at', 'desc')
+             ->paginate();
 
         return view('sales.index')
             ->withSales($sales);
