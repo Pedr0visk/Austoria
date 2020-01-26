@@ -22,6 +22,8 @@
                                 <th>nome</th>
                                 <th>email</th>
                                 <th>Data de Nascimento</th>
+                                <th>Editar</th>
+                                <th>Excluir</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,6 +33,7 @@
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->dob->format('d/m/Y') }}</td>
+                                    <td><a href="#" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form method="post" action="{{ route('customers.destroy', $customer->id) }}">
                                             @csrf

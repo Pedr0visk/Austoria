@@ -13,10 +13,14 @@ class ReportController extends Controller
 {
     public function index()
     {
-        return $sales = Sale::whereYear('created_at', '2018')
-             ->where(DB::raw('extract(MONTH from "created_at")'), '01')
-            //  ->whereMonth('created_at', '01')
-             ->get();
+        $years = [2019,2018,2017];
+        $data = [180, 200, 230, 200, 260, 280, 300, 320, 340, 320, 380, 500];
+
+        return view('reports.index', compact(['data', 'years']));
+        // return $sales = Sale::whereYear('created_at', '2018')
+        //      ->where(DB::raw('extract(MONTH from "created_at")'), '01')
+        //     //  ->whereMonth('created_at', '01')
+        //      ->get();
     }
 
     public function show($date)
