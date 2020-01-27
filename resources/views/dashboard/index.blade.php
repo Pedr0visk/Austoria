@@ -36,7 +36,7 @@
                         <div class="widget-subheading">HOJE</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-success">{{ $salesAmount }}</div>
+                        <div class="widget-numbers text-success">{{ $dailyAmount }}</div>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                         <div class="widget-subheading">MÊS</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning">{{ $monthSalesAmount }}</div>
+                        <div class="widget-numbers text-warning">{{ $totalAmount }}</div>
                     </div>
                 </div>
             </div>
@@ -100,65 +100,6 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="main-card mb-3 card">
-            <div class="card-header">
-                Vendas Recentes
-            </div>
-            <div class="table-responsive">
-                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th class="text-center">#</th>
-                        <th>Cliente</th>
-                        <th class="text-center">Subtotal</th>
-                        <th class="text-center">Total</th>
-                        <th class="text-center">Visualizar</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @forelse($sales as $key => $sale)
-                        <tr>
-                            <td class="text-center text-muted">#345</td>
-                            <td>
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-wrapper">
-                                        <div class="widget-content-left mr-3">
-                                            <div class="widget-content-left">
-                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="widget-content-left flex2">
-                                            <div class="widget-heading">{{ $sale->customer->name }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <div class="btn btn-success">R$ {{$sale->subTotal}}</div>
-                            </td>
-                            <td class="text-center">
-                                <div class="btn btn-success">R$ {{$sale->total}}</div>
-                            </td>
-                            <td class="text-center">
-                                <a href="{{ $sale->path() }}" id="PopoverCustomT-1" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr class="table-info">
-                            <td colspan="7" align="center">Nenhuma venda.</td>
-                        </tr>
-                    @endforelse
-                    </tbody>
-                </table>
-            </div>
-            <div class="d-block text-center card-footer">
-                <a href="{{ route('sales.index') }}" class="btn-wide btn btn-success">ver todas</a>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <div class="mb-3 card">
@@ -395,43 +336,5 @@
 @endsection
 
 @push('scripts')
-<script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['janeiro', 'fevereiro', 'março'],
-        datasets: [{
-            label: '# caixa mensal',
-            data: [500, 600, 450],
-            backgroundColor: [
-                'rgba(54, 162, 235, 0.4)',
-                'rgba(255, 99, 132, 0.4)',
-                'rgba(255, 206, 86, 0.4)',
-                'rgba(75, 192, 192, 0.4)',
-                'rgba(153, 102, 255, 0.4)',
-                'rgba(255, 159, 64, 0.4)'
-            ],
-            borderColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 3,
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
+<script src="{{ asset('js/dashboard-charts.js') }}"></script>
 @endpush

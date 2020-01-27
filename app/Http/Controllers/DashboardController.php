@@ -2,46 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use Illuminate\Http\Request;
-use App\Models\SaleItem;
-use App\Models\Sale;
-use App\Models\Category;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use App\Repositories\MetricsRepository;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(MetricsRepository $metrics)
     {
-        $catService = Category::where('name', 'service')->first();
-        $catProduct = Category::where('name', 'product')->first();
+        $totalAmount = $metrics->getCurrentMonthAmount();
+        $dailyAmount = $metrics->dailyAmount();
 
-        $today = Carbon::now();
-        $month = $today->month;
-
-        $monthSales = Sale::whereMonth('created_at', $month)
-            ->with('items')
-            ->get();
-
-        $sales = Sale::whereDate('created_at', $today)
-            ->with('customer:id,name')
-            ->with('items')
-            ->get();
-
-
-        $salesAmount = $sales->map(function ($sale) {
-            return $sale->total;
-        })->sum();
-
-        $monthSalesAmount = $monthSales->map(function ($sale) {
-            return $sale->total;
-        })->sum();
-
-        return view('dashboard.index')
-            ->withSales($sales)
-            ->withMonthSalesAmount($monthSalesAmount)
-            ->withSalesAmount($salesAmount);
+        return view('dashboard.index', compact(['dailyAmount', 'totalAmount']));
     }
 
     public function old()
