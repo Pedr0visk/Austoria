@@ -25,5 +25,5 @@ Route::post('/sales', 'SaleController@store');
 Route::get('customers/search', 'CustomerController@search');
 Route::post('customers', 'CustomerController@store');
 
-Route::get('metrics/sales', 'MetricsController@index');
+Route::get('metrics/sales/{year}', 'MetricsController@index');
 

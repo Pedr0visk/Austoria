@@ -9,7 +9,7 @@
                 </i>
             </div>
             <div>Olá Igor,
-                <div class="page-title-subheading">Aqui está o eesumo sobre vendas e produtos da barbearia Austoria
+                <div class="page-title-subheading">Aqui está o eesumo sobre vendas e produtos da barbearia Astoria
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                         <div class="widget-subheading">MÊS</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning">{{ $totalAmount }}</div>
+                        <div class="widget-numbers text-info">{{ $totalAmount }}</div>
                     </div>
                 </div>
             </div>
@@ -101,17 +101,13 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12 col-lg-12">
+    <div class="col-md-12 col-lg-6">
         <div class="mb-3 card">
             <div class="card-header-tab card-header-tab-animation card-header">
                 <div class="card-header-title">
                     <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
                     Info de vendas
                 </div>
-                <ul class="nav">
-                    <li class="nav-item"><a href="javascript:void(0);" class="active nav-link">mensal</a></li>
-                    <li class="nav-item"><a href="javascript:void(0);" class="nav-link second-tab-toggle">Hoje</a></li>
-                </ul>
             </div>
             <div class="card-body">
                 <div class="tab-content">
@@ -123,210 +119,29 @@
                                 </div>
                             </div>
                         </div>
-                        <h6 class="text-muted text-uppercase font-size-md opacity-5 font-weight-normal">Top Authors</h6>
-                        <div class="scroll-area-sm">
-                            <div class="scrollbar-container">
-                                <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-3">
-                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/9.jpg" alt="">
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">Ella-Rose Henry</div>
-                                                    <div class="widget-subheading">Web Developer</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <div class="font-size-xlg text-muted">
-                                                        <small class="opacity-5 pr-1">$</small>
-                                                        <span>129</span>
-                                                        <small class="text-danger pl-2">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-3">
-                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/5.jpg" alt="">
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">Ruben Tillman</div>
-                                                    <div class="widget-subheading">UI Designer</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <div class="font-size-xlg text-muted">
-                                                        <small class="opacity-5 pr-1">$</small>
-                                                        <span>54</span>
-                                                        <small class="text-success pl-2">
-                                                            <i class="fa fa-angle-up"></i>
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-3">
-                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">Vinnie Wagstaff</div>
-                                                    <div class="widget-subheading">Java Programmer</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <div class="font-size-xlg text-muted">
-                                                        <small class="opacity-5 pr-1">$</small>
-                                                        <span>429</span>
-                                                        <small class="text-warning pl-2">
-                                                            <i class="fa fa-dot-circle"></i>
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-3">
-                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">Ella-Rose Henry</div>
-                                                    <div class="widget-subheading">Web Developer</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <div class="font-size-xlg text-muted">
-                                                        <small class="opacity-5 pr-1">$</small>
-                                                        <span>129</span>
-                                                        <small class="text-danger pl-2">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-3">
-                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/2.jpg" alt="">
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">Ruben Tillman</div>
-                                                    <div class="widget-subheading">UI Designer</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <div class="font-size-xlg text-muted">
-                                                        <small class="opacity-5 pr-1">$</small>
-                                                        <span>54</span>
-                                                        <small class="text-success pl-2">
-                                                            <i class="fa fa-angle-up"></i>
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6 col-lg-3">
-        <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
-            <div class="widget-content">
-                <div class="widget-content-outer">
-                    <div class="widget-content-wrapper">
-                        <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-danger">71%</div>
-                        </div>
-                        <div class="widget-content-right w-100">
-                            <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Income Target</div>
-                    </div>
+    <div class="col-md-12 col-lg-6">
+        <div class="mb-3 card">
+            <div class="card-header-tab card-header-tab-animation card-header">
+                <div class="card-header-title">
+                    <i class="header-icon lnr-apartment icon-gradient bg-love-kiss"> </i>
+                    Info de vendas
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card-shadow-success mb-3 widget-chart widget-chart2 text-left card">
-            <div class="widget-content">
-                <div class="widget-content-outer">
-                    <div class="widget-content-wrapper">
-                        <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-success">54%</div>
-                        </div>
-                        <div class="widget-content-right w-100">
-                            <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100" style="width: 54%;"></div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tabs-eg-77">
+                        <div class="card mb-3 widget-chart widget-chart2 text-left w-100">
+                            <div class="widget-chat-wrapper-outer">
+                                <div class="widget-chart-wrapper widget-chart-wrapper-lg opacity-10 m-0">
+                                    <canvas id="productsSaledChart"></canvas>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Expenses Target</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card-shadow-warning mb-3 widget-chart widget-chart2 text-left card">
-            <div class="widget-content">
-                <div class="widget-content-outer">
-                    <div class="widget-content-wrapper">
-                        <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-warning">32%</div>
-                        </div>
-                        <div class="widget-content-right w-100">
-                            <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width: 32%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Spendings Target</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="card-shadow-info mb-3 widget-chart widget-chart2 text-left card">
-            <div class="widget-content">
-                <div class="widget-content-outer">
-                    <div class="widget-content-wrapper">
-                        <div class="widget-content-left pr-2 fsize-1">
-                            <div class="widget-numbers mt-0 fsize-3 text-info">89%</div>
-                        </div>
-                        <div class="widget-content-right w-100">
-                            <div class="progress-bar-xs progress">
-                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-content-left fsize-1">
-                        <div class="text-muted opacity-6">Totals Target</div>
                     </div>
                 </div>
             </div>

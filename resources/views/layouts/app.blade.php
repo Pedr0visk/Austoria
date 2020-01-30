@@ -136,14 +136,10 @@
                         <div class="app-footer__inner">
                             <div class="app-footer-left">
                                 <ul class="nav">
+
                                     <li class="nav-item">
                                         <a href="javascript:void(0);" class="nav-link">
-                                            Footer Link 1
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="javascript:void(0);" class="nav-link">
-                                            Footer Link 2
+                                            Desenvolvido por © Pedro Belloto
                                         </a>
                                     </li>
                                 </ul>
@@ -152,7 +148,7 @@
                                 <ul class="nav">
                                     <li class="nav-item">
                                         <a href="javascript:void(0);" class="nav-link">
-                                            Footer Link 3
+                                            <i class="fas fa-instagram"></i>
                                         </a>
                                     </li>
                                     <li class="nav-item">

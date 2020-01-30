@@ -28,9 +28,17 @@ class CustomerController extends Controller
         return redirect(route('customers.index'));
     }
 
+    public function edit(Customer $customer)
+    {
+        return view('customers.edit', compact('customer'));
+    }
+
     public function update(Customer $customer)
     {
         $customer->update($this->validateRequest());
+
+        return redirect(route('customers.index'))
+            ->with('success', 'Cliente (' . $customer->name . ') atualizado com sucesso');
     }
 
     public function destroy(Customer $customer)

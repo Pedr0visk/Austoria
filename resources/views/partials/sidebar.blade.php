@@ -86,13 +86,6 @@
                     </li>
                 </ul>
             </li>
-            <li class="app-sidebar__heading">Vendas</li>
-            <li>
-                <a class="{{ (request()->is('sales*')) ? 'mm-active' : '' }}" href="{{ route('sales.index') }}">
-                    <i class="metismenu-icon pe-7s-cash"></i>
-                    Listar vendas
-                </a>
-            </li>
         </ul>
     </div>
 </div>

@@ -2455,7 +2455,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['index', 'item'],
+  props: ["index", "item"],
   data: function data() {
     return {};
   },
@@ -52209,7 +52209,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-primary btn-block",
+              staticClass: "btn btn-success btn-block",
               attrs: { type: "submit", disabled: _vm.items.length == 0 },
               on: {
                 click: function($event) {
@@ -52246,9 +52246,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { width: "7%" } }, [_vm._v("Quantidade")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "10%" } }, [_vm._v("Desconto")]),
+        _c("th", { attrs: { width: "16%" } }, [_vm._v("% Desconto")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "16%" } }, [_vm._v("Subtotal")]),
+        _c("th", { attrs: { width: "10%" } }, [_vm._v("Subtotal")]),
         _vm._v(" "),
         _c("th", { attrs: { width: "5%", align: "center" } }, [_vm._v("Ação")])
       ])
@@ -52452,7 +52452,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "btn btn-primary",
+          staticClass: "btn btn-success",
           attrs: {
             type: "button",
             "data-toggle": "modal",

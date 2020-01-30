@@ -33,12 +33,12 @@
                                     <td>{{ $customer->name }}</td>
                                     <td>{{ $customer->email }}</td>
                                     <td>{{ $customer->dob->format('d/m/Y') }}</td>
-                                    <td><a href="#" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
+                                    <td><a href="{{ $customer->path() }}" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
                                     <td>
                                         <form method="post" action="{{ route('customers.destroy', $customer->id) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">x</button>
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -95,9 +95,9 @@
             <div class="card-body pb-0">
                 <form action="{{ route('customers.index') }}">
                     <div class="form-group mb-3 p-2">
-                        <input id="search-box" name="name" type="text" class="form-control" placeholder="Pesquisar produto..." value="{{ Request::get('name') }}">
+                        <input id="search-box" name="name" type="text" class="form-control" placeholder="Nome do cliente..." value="{{ Request::get('name') }}">
                     </div>
-                    <button class="btn btn-success btn-block mb-3" type="submit">Filtrar <i class="fa fa-search"></i></button>
+                    <button class="btn btn-info btn-block mb-3" type="submit">Filtrar <i class="fa fa-search"></i></button>
                 </form>
             </div>
         </div>

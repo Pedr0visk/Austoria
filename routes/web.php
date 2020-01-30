@@ -13,6 +13,7 @@ Route::delete('/categories/{category}', 'CategoryController@destroy')->name('cat
 
 Route::get('/customers', 'CustomerController@index')->name('customers.index');
 Route::post('/customers', 'CustomerController@store')->name('customers.store');
+Route::get('/customers/{customer}', 'CustomerController@edit')->name('customers.edit');
 Route::patch('/customers/{customer}', 'CustomerController@update')->name('customers.update');
 Route::delete('/customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
 
@@ -21,7 +22,4 @@ Route::get('/sales/create', 'SaleController@create')->name('sales.create');
 Route::get('/sales', 'SaleController@index')->name('sales.index');
 Route::get('/sales/{sale}', 'SaleController@show')->name('sales.show');
 
-Route::namespace('SalesReport')->group(function () {
-    Route::get('/reports/sales', 'ReportController@index')->name('reports.index');
-    Route::get('/reports/sales/{date}', 'ReportController@show')->name('reports.sales');
-});
+Route::get('/metrics/sales', 'MetricsController@index');

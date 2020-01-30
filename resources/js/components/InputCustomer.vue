@@ -15,7 +15,7 @@
         </ul>
 
         <div class="input-group-append">
-            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#customerModal"><i class="fa fa-plus"></i> Criar</button>
+            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#customerModal"><i class="fa fa-plus"></i> Criar</button>
         </div>
 
         <div class="modal fade" id="customerModal" tabindex="-1" role="dialog" aria-labelledby="customerModalLabel" aria-hidden="true" style="z-index: 999">

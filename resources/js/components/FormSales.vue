@@ -16,8 +16,8 @@
                                     <th>Produto</th>
                                     <th width="14%">Preço</th>
                                     <th width="7%">Quantidade</th>
-                                    <th width="10%">Desconto</th>
-                                    <th width="16%">Subtotal</th>
+                                    <th width="16%">% Desconto</th>
+                                    <th width="10%">Subtotal</th>
                                     <th width="5%" align="center">Ação</th>
                                 </tr>
                             </thead>
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="card-body">
-                    <button type="submit" class="btn btn-primary btn-block" @click.prevent="validateForm" :disabled="(items.length == 0)">Finalizar venda</button>
+                    <button type="submit" class="btn btn-success btn-block" @click.prevent="validateForm" :disabled="(items.length == 0)">Finalizar venda</button>
                     <a href="/" class="btn btn-link btn-block">cancelar</a>
                 </div>
             </div>

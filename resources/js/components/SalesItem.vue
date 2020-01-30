@@ -20,65 +20,64 @@
 
 <script>
 export default {
-    props: ['index', 'item'],
-    data () {
-        return {
-        }
+  props: ["index", "item"],
+  data() {
+    return {};
+  },
+  computed: {
+    rowNumber() {
+      return this.index + 1;
     },
-    computed: {
-        rowNumber () {
-            return this.index + 1;
-        },
-        bruttoPrice () {
-            let item = this.item
+    bruttoPrice() {
+      let item = this.item;
 
-            return item.quantity * item.price
-        },
-        discountPrice () {
-            let item = this.item
-            let discount = (item.quantity * item.price) * (item.discount / 100)
-            return discount;
-        },
-        subtotalPrice () {
-            let item = this.item
-            let subtotal = this.bruttoPrice - this.discountPrice
-            return subtotal;
-        },
-        costOfGoodsSold () {
-            let item = this.item
-
-            return item.price - this.discountPrice
-        }
+      return item.quantity * item.price;
     },
-    methods: {
-        addItem (item) {
-            item.quantity = item.quantity + 1
-        },
-        removeItem (item) {
-            if (item.quantity - 1 == 0) {
-                this.confirmDelete = true
-            } else {
-                item.quantity = item.quantity - 1
-            }
-        },
-        deleteItem (item) {
-            let index = _.findIndex(this.$parent.items, function(i) {
-                return i.id == item.id
-            })
-
-            this.$parent.items.splice(index, 1)
-        },
-        toggleDelete() {
-            this.confirmDelete = (this.confirmDelete) ? false : true
-        }
+    discountPrice() {
+      let item = this.item;
+      let discount = item.quantity * item.price * (item.discount / 100);
+      return discount;
     },
-    watch: {
-        subtotalPrice () {
-            this.item.subtotal_unit_price = this.subtotalPrice
-        },
-        costOfGoodsSold () {
-            this.item.cost_of_goods_sold = this.costOfGoodsSold
-        }
+    subtotalPrice() {
+      let item = this.item;
+      let subtotal = this.bruttoPrice - this.discountPrice;
+      return subtotal;
+    },
+    costOfGoodsSold() {
+      let item = this.item;
+
+      return item.price - this.discountPrice;
     }
-}
+  },
+  methods: {
+    addItem(item) {
+      item.quantity = item.quantity + 1;
+    },
+    removeItem(item) {
+      if (item.quantity - 1 == 0) {
+        this.confirmDelete = true;
+      } else {
+        item.quantity = item.quantity - 1;
+      }
+    },
+    deleteItem(item) {
+      let index = _.findIndex(this.$parent.items, function(i) {
+        return i.id == item.id;
+      });
+
+      this.$parent.items.splice(index, 1);
+    },
+    toggleDelete() {
+      this.confirmDelete = this.confirmDelete ? false : true;
+    }
+  },
+  watch: {
+    subtotalPrice() {
+      this.item.subtotal_unit_price = this.subtotalPrice;
+    },
+    costOfGoodsSold() {
+      this.item.cost_of_goods_sold = this.costOfGoodsSold;
+    }
+  }
+};
 </script>
