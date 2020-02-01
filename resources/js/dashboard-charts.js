@@ -1,5 +1,5 @@
 (function () {
-
+    // comment
     var charts = {
         init: function () {
             charts.ajaxGetSaleMonthlyData();
