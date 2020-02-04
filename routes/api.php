@@ -27,3 +27,5 @@ Route::post('customers', 'CustomerController@store');
 
 Route::get('metrics/sales/{year}', 'MetricsController@index');
 
+Route::get('payment-methods/all', 'PaymentMethodController@all');
+

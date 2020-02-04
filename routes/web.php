@@ -23,3 +23,6 @@ Route::get('/sales', 'SaleController@index')->name('sales.index');
 Route::get('/sales/{sale}', 'SaleController@show')->name('sales.show');
 
 Route::get('/metrics/sales', 'MetricsController@index');
+
+Route::get('/payments', 'PaymentController@index');
+Route::post('/payments', 'PaymentController@store');

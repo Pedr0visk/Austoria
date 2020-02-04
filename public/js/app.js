@@ -2023,6 +2023,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2035,6 +2055,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       payment: {},
+      paymentMethods: [],
+      salePayment: {},
       form: {
         customer_id: null
       },
@@ -2057,7 +2079,7 @@ __webpack_require__.r(__webpack_exports__);
       if (!_.includes(ids, item.id)) {
         this.$set(item, "quantity", 1);
         this.$set(item, "discount", 0);
-        this.$set(item, "subtotal_unit_price", item.price * item.quantity);
+        this.$set(item, "subtotal_unit_price", Number(item.price * item.quantity).toFixed(2));
         this.items.push(item);
       } else {
         var index = _.findIndex(this.items, function (i) {
@@ -2067,6 +2089,12 @@ __webpack_require__.r(__webpack_exports__);
         var currentProduct = this.items[index];
         currentProduct.quantity = currentProduct.quantity + 1;
       }
+    },
+    addPayment: function addPayment() {
+      var payment = this.payment;
+      this.salePayment = {
+        paymentMethod: payment.paymentMethod
+      };
     },
     removeItem: function removeItem(item) {
       var index = _.findIndex(this.items, function (i) {
@@ -2116,6 +2144,9 @@ __webpack_require__.r(__webpack_exports__);
           quantity: item.quantity
         };
       });
+      formRequest.payment = {
+        payment_method_id: this.payment.paymentMethod.id
+      };
       axios.post("/api/sales", formRequest).then(function (res) {
         that.$swal({
           title: "Venda confirmada!",
@@ -2148,6 +2179,11 @@ __webpack_require__.r(__webpack_exports__);
     });
     axios.get("/api/customers/search").then(function (res) {
       that.customers = res.data;
+    });
+    axios.get("/api/payment-methods/all").then(function (res) {
+      that.paymentMethods = res.data; // select first payment
+
+      _this.payment.paymentMethod = that.paymentMethods[0];
     });
   }
 });
@@ -52206,6 +52242,90 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.items.length > 0,
+                  expression: "items.length > 0"
+                }
+              ],
+              staticClass: "form-group"
+            },
+            [
+              _c("label", { attrs: { for: "name" } }, [
+                _vm._v("Payment Methods *")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-3" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required",
+                        expression: "'required'"
+                      },
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.payment.paymentMethod,
+                        expression: "payment.paymentMethod"
+                      }
+                    ],
+                    class: {
+                      "form-control": true,
+                      "is-invalid": _vm.errors.has("paymentMethod")
+                    },
+                    attrs: { "data-vv-name": "paymentMethod" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.payment,
+                            "paymentMethod",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.addPayment
+                      ]
+                    }
+                  },
+                  _vm._l(_vm.paymentMethods, function(paymentMethod) {
+                    return _c(
+                      "option",
+                      {
+                        key: paymentMethod.id,
+                        domProps: { value: paymentMethod }
+                      },
+                      [_vm._v(_vm._s(paymentMethod.name))]
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(_vm._s(_vm.errors.first("paymentMethod")))
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
           _c(
             "button",
             {

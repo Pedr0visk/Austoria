@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Sale;
 use App\Models\Product;
+use App\Models\Payment;
 use App\Models\Customer;
 use App\Models\SaleItem;
 
@@ -16,18 +17,21 @@ class SaleManagementTest extends TestCase
     /** @test */
     public function a_sale_can_be_created()
     {
-        $this->withoutExceptionHandling();
         $customer = factory(Customer::class)->create();
         $products = factory(Product::class, 2)->create();
 
         $response = $this->post('/api/sales', $this->data());
 
         $sale = Sale::all();
+        $payment = Payment::all();
 
         $this->assertCount(1, $sale);
+        $this->assertCount(1, $payment);
+        $this->assertEquals(1750.00, $payment->first()->amount);
         $this->assertEquals(1750.00, $sale->first()->subtotal);
         $this->assertEquals(1750.00, $sale->first()->total);
         $this->assertCount(2, SaleItem::all());
+        $this->assertCount(1, Sale::all());
     }
 
     /** @test */
@@ -35,21 +39,25 @@ class SaleManagementTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->post('/api/sales',
+        $data = array_merge (
+            $this->data(),
             [
-                'customer_id' => 1,
-                'items'       => [
+                'items' => [
                     ['product_id' => 1, 'quantity' => 10, 'price' => 100, 'discount' => 10],
                     ['product_id' => 2, 'quantity' => 5,  'price' => 150, 'discount' => 0],
-                ],
+                ]
             ]
         );
 
+        $response = $this->post('/api/sales', $data);
+
         $sales = Sale::all();
+        $payment = Payment::all();
 
         $this->assertCount(1, $sales);
         $this->assertEquals(1750.00, $sales->first()->subtotal);
         $this->assertEquals(1650.00, $sales->first()->total);
+        $this->assertEquals(1650.00, $payment->first()->amount);
      }
 
     /** @test */
@@ -68,6 +76,14 @@ class SaleManagementTest extends TestCase
         $response->assertSessionHasErrors('items');
     }
 
+    /** @test */
+    public function payment_is_required()
+    {
+        $response = $this->post('/api/sales', array_merge($this->data(), ['payment' => []]));
+
+        $response->assertSessionHasErrors('payment');
+    }
+
     protected function data()
     {
         return [
@@ -76,6 +92,7 @@ class SaleManagementTest extends TestCase
                 ['product_id' => 1, 'quantity' => 10, 'price' => 100, 'discount' => 0],
                 ['product_id' => 2, 'quantity' => 5,  'price' => 150, 'discount' => 0],
             ],
+            'payment' => ['payment_method_id' => 1]
         ];
     }
 }

@@ -4,11 +4,19 @@ namespace App\Models;
 
 use DB;
 use App\Models\SaleItem;
+use App\Models\Payment;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-    protected $fillable = ['customer_id'];
+    protected $fillable = ['customer_id', 'cashier_id'];
+
+    // soon stored in database
+    public static $paymentMethods = [
+        ['id' => 1, 'name' => 'Dinheiro'],
+        ['id' => 2, 'name' => 'Débito'],
+        ['id' => 3, 'name' => 'Crédito'],
+    ];
 
     public static $rules = ['customer_id' => 'required'];
 
@@ -27,17 +35,9 @@ class Sale extends Model
         return $this->hasMany(SaleItem::class);
     }
 
-    public static function createAll($input_form)
+    public function payment()
     {
-        DB::transaction(function () use ($input_form) {
-
-            $items = collect($input_form['items'])->map(function ($item) {
-                return new SaleItem($item);
-            });
-
-            $sale = self::create($input_form);
-            $sale->items()->saveMany($items);
-        });
+        return $this->hasOne(Payment::class);
     }
 
     public function getSubtotalAttribute()

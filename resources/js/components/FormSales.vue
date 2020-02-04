@@ -60,6 +60,26 @@
                 </div>
 
                 <div class="card-body">
+                    <div class="form-group" v-show="items.length > 0">
+                        <label for="name">Payment Methods *</label>
+                        <div class="input-group mb-3">
+
+                            <!-- select payment -->
+                            <select
+                            @change="addPayment"
+                            v-validate="'required'"
+                            data-vv-name="paymentMethod"
+                            v-model="payment.paymentMethod"
+                            :class="{'form-control' : true, 'is-invalid' : errors.has('paymentMethod')}">
+                                <option
+                                v-for="paymentMethod in paymentMethods"
+                                :key="paymentMethod.id"
+                                :value="paymentMethod">{{ paymentMethod.name }}</option>
+                            </select>
+
+                            <div class="invalid-feedback">{{ errors.first('paymentMethod') }}</div>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-success btn-block" @click.prevent="validateForm" :disabled="(items.length == 0)">Finalizar venda</button>
                     <a href="/" class="btn btn-link btn-block">cancelar</a>
                 </div>
@@ -83,6 +103,8 @@ export default {
   data() {
     return {
       payment: {},
+      paymentMethods: [],
+      salePayment: {},
       form: {
         customer_id: null
       },
@@ -105,7 +127,12 @@ export default {
       if (!_.includes(ids, item.id)) {
         this.$set(item, "quantity", 1);
         this.$set(item, "discount", 0);
-        this.$set(item, "subtotal_unit_price", item.price * item.quantity);
+        this.$set(
+          item,
+          "subtotal_unit_price",
+
+          Number(item.price * item.quantity).toFixed(2)
+        );
 
         this.items.push(item);
       } else {
@@ -118,6 +145,12 @@ export default {
         currentProduct.quantity = currentProduct.quantity + 1;
       }
     },
+
+    addPayment() {
+      let payment = this.payment;
+      this.salePayment = { paymentMethod: payment.paymentMethod };
+    },
+
     removeItem(item) {
       let index = _.findIndex(this.items, function(i) {
         return i.id == item.id;
@@ -131,6 +164,7 @@ export default {
         currentProduct.quantity = currentProduct.quantity - 1;
       }
     },
+
     deleteItem(item) {
       let index = _.findIndex(this.items, function(i) {
         return i.id == item.id;
@@ -138,6 +172,7 @@ export default {
 
       this.items.splice(index, 1);
     },
+
     clearForm() {
       this.form = {
         customer_id: null
@@ -161,6 +196,7 @@ export default {
       const that = this;
 
       let formRequest = this.form;
+
       formRequest.items = _.map(this.items, item => {
         return {
           product_id: item.id,
@@ -169,6 +205,10 @@ export default {
           quantity: item.quantity
         };
       });
+
+      formRequest.payment = {
+        payment_method_id: this.payment.paymentMethod.id
+      };
 
       axios.post("/api/sales", formRequest).then(res => {
         that
@@ -206,6 +246,12 @@ export default {
 
     axios.get("/api/customers/search").then(res => {
       that.customers = res.data;
+    });
+
+    axios.get("/api/payment-methods/all").then(res => {
+      that.paymentMethods = res.data;
+      // select first payment
+      this.payment.paymentMethod = that.paymentMethods[0];
     });
   }
 };
