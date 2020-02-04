@@ -6,7 +6,7 @@
         },
 
         ajaxGetSaleMonthlyData: function () {
-            var urlPath = 'http://' + window.location.hostname + '/api/metrics/sales/2020';
+            var urlPath = 'https://' + window.location.hostname + '/api/metrics/sales/2020';
             var request = $.ajax({
                 method: 'GET',
                 url: urlPath
