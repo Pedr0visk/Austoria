@@ -151,5 +151,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('js/dashboard-charts.js') }}"></script>
+<script src="{{ secure_asset('js/dashboard-charts.js') }}"></script>
 @endpush
