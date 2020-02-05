@@ -11,6 +11,25 @@ use DB;
 class MetricsRepository
 {
     /**
+     *
+     */
+    public function getSaledItemsGroupByName()
+    {
+        $year = Carbon::now()->year;
+
+        $data = DB::table('sale_items')
+        ->select('products.name', DB::raw('count(*) as total_sales'))
+        ->join('products', 'sale_items.product_id', '=', 'products.id')
+        ->whereYear('sale_items.created_at', $year)
+        ->groupBy('products.name')
+        ->get();
+
+        $names = $data->map(function ($item) { return $item->name; });
+        $total_sales = $data->map(function ($item) { return $item->total_sales; });
+
+        return ['names' => $names, 'items_saled_quantity' => $total_sales];
+    }
+    /**
      * return all sales of the month
      */
     public function getMonthlySalesData($year, $month)

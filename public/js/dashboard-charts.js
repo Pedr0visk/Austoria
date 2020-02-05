@@ -98,16 +98,30 @@
   var charts = {
     init: function init() {
       charts.ajaxGetSaleMonthlyData();
+      charts.ajaxGetSaledItemsData();
     },
     ajaxGetSaleMonthlyData: function ajaxGetSaleMonthlyData() {
-      var urlPath = 'https://' + window.location.hostname + '/api/metrics/sales/2020';
+      var date = new Date();
+      var year = date.getFullYear();
+      var urlPath = window.location.origin + '/api/metrics/sales/' + year;
+      var request = $.ajax({
+        method: 'GET',
+        url: urlPath
+      });
+      request.done(function (response) {
+        charts.createMetricsSalesChart(response);
+      });
+    },
+    ajaxGetSaledItemsData: function ajaxGetSaledItemsData() {
+      var date = new Date();
+      var year = date.getFullYear();
+      var urlPath = window.location.origin + '/api/metrics/sale-items';
       var request = $.ajax({
         method: 'GET',
         url: urlPath
       });
       request.done(function (response) {
         console.log(response);
-        charts.createMetricsSalesChart(response);
         charts.createProductSaledChart(response);
       });
     },
@@ -116,10 +130,10 @@
       var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-          labels: ['cortes de cabelo', 'pomadas'],
+          labels: response.names,
           datasets: [{
-            label: '# caixa mensal',
-            data: [20, 100],
+            label: '# ',
+            data: response.items_saled_quantity,
             backgroundColor: ['rgba(255, 206, 86, 0.4)', 'rgba(75, 192, 192, 0.4)'],
             borderColor: ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
             borderWidth: 3

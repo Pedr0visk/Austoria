@@ -2079,7 +2079,7 @@ __webpack_require__.r(__webpack_exports__);
       if (!_.includes(ids, item.id)) {
         this.$set(item, "quantity", 1);
         this.$set(item, "discount", 0);
-        this.$set(item, "subtotal_unit_price", Number(item.price * item.quantity).toFixed(2));
+        this.$set(item, "subtotal_unit_price", item.price * item.quantity);
         this.items.push(item);
       } else {
         var index = _.findIndex(this.items, function (i) {
