@@ -65,9 +65,7 @@
                             <input name="end_date" value="{{ Request::get('end_date') }}" type="date" class="form-control mb-3">
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="formControlRange">Por preço:</label>
-                            <input class="form-control" type="range" name="total" id="maxPriceInputId" value="{{ Request::get('total')}}" min="1" max="1000" oninput="maxPriceOutputId.value = maxPriceInputId.value">
-                            <output name="maxPriceOutputName" id="maxPriceOutputId">{{ Request::get('total')}}</output> R$
+                            @include('partials.paymethods.select')
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-filter"></i> Filtrar</button>

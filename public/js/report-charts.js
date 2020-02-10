@@ -150,7 +150,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/nilcelia/Documents/projetos/austoria/resources/js/report-charts.js */"./resources/js/report-charts.js");
+module.exports = __webpack_require__(/*! /Users/nilcelia/Documents/Projetos/Astoria/resources/js/report-charts.js */"./resources/js/report-charts.js");
 
 
 /***/ })

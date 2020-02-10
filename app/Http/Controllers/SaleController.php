@@ -6,6 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\Sale;
 use App\Models\SaleItem;
+use App\Models\Payment;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -15,14 +16,15 @@ class SaleController extends Controller
     {
         $currentMonth = new Carbon();
 
+        $paymentMethods = Sale::$paymentMethods;
+
         $sales = Sale::with('customer:id,name')
              ->with('items')
              ->whereMonth('created_at', $currentMonth)
              ->orderBy('created_at', 'desc')
              ->paginate();
 
-        return view('sales.index')
-            ->withSales($sales);
+        return view('sales.index', compact(['sales', 'paymentMethods']));
     }
 
     public function create()
@@ -46,6 +48,11 @@ class SaleController extends Controller
 
         if ($end_date = request()->end_date) {
             $sales->whereDate('sales.created_at', '<=', $end_date);
+        }
+
+        if ($payment_method = request()->payment_method) {
+            $sales->join('payments', 'payments.sale_id', '=', 'sales.id')
+                ->where('payments.payment_method_id', $payment_method);
         }
 
         if ($total = request()->total) {

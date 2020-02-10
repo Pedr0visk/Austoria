@@ -94,11 +94,22 @@
 /***/ (function(module, exports) {
 
 (function () {
-  // comment
   var charts = {
     init: function init() {
       charts.ajaxGetSaleMonthlyData();
       charts.ajaxGetSaledItemsData();
+      charts.ajaxGetPaymentsData();
+    },
+    ajaxGetPaymentsData: function ajaxGetPaymentsData(type) {
+      type = 'month';
+      var urlPath = window.location.origin + '/api/metrics/payments/' + type;
+      var request = $.ajax({
+        method: 'GET',
+        url: urlPath
+      });
+      request.done(function (response) {
+        charts.createPaymentMetricsChart(response);
+      });
     },
     ajaxGetSaleMonthlyData: function ajaxGetSaleMonthlyData() {
       var date = new Date();
@@ -123,6 +134,34 @@
       request.done(function (response) {
         console.log(response);
         charts.createProductSaledChart(response);
+      });
+    },
+    createPaymentMetricsChart: function createPaymentMetricsChart(response) {
+      var ctx = document.getElementById('paymentChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: response.methods,
+          datasets: [{
+            label: '# ',
+            data: response.payments,
+            backgroundColor: ['rgba(255, 206, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(153, 102, 255, 0.4)', 'rgba(255, 159, 64, 0.4)', 'rgba(54, 162, 235, 0.4)', 'rgba(255, 99, 132, 0.4)', 'rgba(255, 206, 86, 0.4)', 'rgba(75, 192, 192, 0.4)', 'rgba(153, 102, 255, 0.4)', 'rgba(255, 159, 64, 0.4)'],
+            borderColor: ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+            borderWidth: 3
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              time: {
+                unit: 'date'
+              },
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
       });
     },
     createProductSaledChart: function createProductSaledChart(response) {
@@ -194,7 +233,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/nilcelia/Documents/projetos/austoria/resources/js/dashboard-charts.js */"./resources/js/dashboard-charts.js");
+module.exports = __webpack_require__(/*! /Users/nilcelia/Documents/Projetos/Astoria/resources/js/dashboard-charts.js */"./resources/js/dashboard-charts.js");
 
 
 /***/ })
