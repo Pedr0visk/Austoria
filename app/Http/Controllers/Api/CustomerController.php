@@ -34,7 +34,7 @@ class CustomerController extends Controller
             'name'      => 'required',
             'dob'       => 'required',
             'phone'     => 'required',
-            'email'     => 'nullable',
+            'instagram'     => 'nullable',
         ]);
     }
 }

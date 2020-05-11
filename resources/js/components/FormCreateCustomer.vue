@@ -6,12 +6,12 @@
             <div class="invalid-feedback"></div>
         </div>
         <div class="form-group">
-            <label for="email">Email *</label>
-            <input v-model="form.email" type="text" class="form-control" id="email" placeholder="Example@email.com...">
+            <label for="instagram">Instagram (opcional)</label>
+            <input v-model="form.instagram" type="text" class="form-control" id="instagram" placeholder="pedrobellotooficial">
             <div class="invalid-feedback"></div>
         </div>
         <div class="form-group">
-            <label for="phone">Telefone *</label>
+            <label for="phone">Telefone</label>
             <input v-model="form.phone" type="text" class="form-control" id="phone" placeholder="(24) 99999-9999">
             <div class="invalid-feedback"></div>
         </div>
@@ -29,8 +29,8 @@ export default {
     return {
       form: {
         name: null,
-        email: null,
         phone: null,
+        instagram: null,
         dob: null
       }
     };
@@ -50,8 +50,8 @@ export default {
     clearForm() {
       this.form = {
         name: null,
-        email: null,
         phone: null,
+        instagram: null,
         dob: null
       };
     }

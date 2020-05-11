@@ -4,8 +4,7 @@
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow" style="z-index: 45">
             <div class="app-header__logo">
-                <!-- <div class="logo-src"></div> -->
-                <small>sua logo aqui</small>
+                <img width="80" class="img-fluid" src="{{asset('img/logo.png')}}" alt="">
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -71,7 +70,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="widget-content-left  ml-3 header-user-info">
+                                <!-- <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
                                         Thomas Vidall
                                     </div>
@@ -83,7 +82,7 @@
                                     <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
                                         <i class="fa text-white fa-calendar pr-1 pl-1"></i>
                                     </button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

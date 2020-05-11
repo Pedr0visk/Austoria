@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sale;
 
+use chatapi\WhatsApp as Client;
+
 class SaleController extends Controller
 {
     public function store()

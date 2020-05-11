@@ -22,6 +22,7 @@ class CustomerManagementTest extends TestCase
         $this->assertCount(1, $customer);
         $this->assertInstanceOf(Carbon::class, $customer->first()->dob);
         $this->assertEquals('1997/31/08', $customer->first()->dob->format('Y/d/m'));
+        $this->assertEquals('pedrobelloto', $customer->first()->instagram);
     }
 
     /** @test */
@@ -59,7 +60,6 @@ class CustomerManagementTest extends TestCase
             'name' => 'Pedro',
             'dob' => '1995-12-09',
             'phone' => '21988970938',
-            'email' => 'pbelloto@gmail.com',
         ]);
 
         $this->assertEquals('1995/12/09', $customer->fresh()->first()->dob->format('Y/m/d'));
@@ -70,7 +70,7 @@ class CustomerManagementTest extends TestCase
             'name' => 'Customer name',
             'dob' => '1997-08-31',
             'phone' => '24998869574',
-            'email' => 'pedro357bm@gmail.com',
+            'instagram' => 'pedrobelloto',
         ];
     }
 }

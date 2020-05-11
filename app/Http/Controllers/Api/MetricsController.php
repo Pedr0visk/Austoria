@@ -55,6 +55,7 @@ class MetricsController extends Controller
                     return  null;
             }
          });
+
         $payments = $dataPayments->map(function ($item) { return $item->total_payments; });
 
         $data = [

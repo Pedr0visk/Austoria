@@ -1901,8 +1901,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: {
         name: null,
-        email: null,
         phone: null,
+        instagram: null,
         dob: null
       }
     };
@@ -1920,8 +1920,8 @@ __webpack_require__.r(__webpack_exports__);
     clearForm: function clearForm() {
       this.form = {
         name: null,
-        email: null,
         phone: null,
+        instagram: null,
         dob: null
       };
     }
@@ -52013,30 +52013,32 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "email" } }, [_vm._v("Email *")]),
+      _c("label", { attrs: { for: "instagram" } }, [
+        _vm._v("Instagram (opcional)")
+      ]),
       _vm._v(" "),
       _c("input", {
         directives: [
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.form.email,
-            expression: "form.email"
+            value: _vm.form.instagram,
+            expression: "form.instagram"
           }
         ],
         staticClass: "form-control",
         attrs: {
           type: "text",
-          id: "email",
-          placeholder: "Example@email.com..."
+          id: "instagram",
+          placeholder: "pedrobellotooficial"
         },
-        domProps: { value: _vm.form.email },
+        domProps: { value: _vm.form.instagram },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.$set(_vm.form, "email", $event.target.value)
+            _vm.$set(_vm.form, "instagram", $event.target.value)
           }
         }
       }),
@@ -52045,7 +52047,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "phone" } }, [_vm._v("Telefone *")]),
+      _c("label", { attrs: { for: "phone" } }, [_vm._v("Telefone")]),
       _vm._v(" "),
       _c("input", {
         directives: [

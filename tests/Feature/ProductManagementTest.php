@@ -40,24 +40,25 @@ class ProductManagementTest extends TestCase
         $response->assertSessionHasErrors('price');
     }
 
-    /** @test disabled */
-    // public function a_product_can_be_updated()
-    // {
-    //     $this->post('/products', $this->data());
+    /** @test */
+    public function a_product_can_be_updated()
+    {
+        $this->post('/products', $this->data());
 
-    //     $product = Product::first();
+        $product = Product::first();
 
-    //     $response = $this->patch($product->path(), [
-    //         'name' => 'Gel',
-    //         'price' => 20.00,
-    //         'category_id' => 'produto',
-    //     ]);
+        $response = $this->patch($product->path(), [
+            'name' => 'Gel',
+            'price' => 20.00,
+            'category_id' => 'produto',
+        ]);
 
-    //     $this->assertEquals('Gel', Product::first()->fresh()->name);
-    //     $this->assertCount(2, Category::all());
+        $this->assertCount(1, Product::all());
+        $this->assertEquals('Gel', Product::first()->fresh()->name);
+        $this->assertEquals(20, Product::first()->fresh()->price);
 
-    //     $response->assertRedirect('/products');
-    // }
+        $response->assertRedirect('/products');
+    }
 
     /** @test */
     public function a_product_can_be_deleted()

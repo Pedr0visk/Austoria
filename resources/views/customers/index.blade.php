@@ -20,7 +20,7 @@
                             <tr>
                                 <th width="5%">#</th>
                                 <th>nome</th>
-                                <th>email</th>
+                                <th>instagram</th>
                                 <th>Data de Nascimento</th>
                                 <th>Editar</th>
                                 <th>Excluir</th>
@@ -31,7 +31,7 @@
                                 <tr>
                                     <td>{{ $customers->firstItem() + $key }}</td>
                                     <td>{{ $customer->name }}</td>
-                                    <td>{{ $customer->email }}</td>
+                                    <td>@ {{ $customer->instagram }}</td>
                                     <td>{{ $customer->dob->format('d/m/Y') }}</td>
                                     <td><a href="{{ $customer->path() }}" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
                                     <td>

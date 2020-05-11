@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Repositories\MetricRepository;
 use App\Http\View\Composers\PaymentMethodsCompose;
+use App\Http\View\Composers\CategoriesCompose;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(['partials.paymethods.*'], PaymentMethodsCompose::class);
+        View::composer(['partials.categories.*'], CategoriesCompose::class);
     }
 }

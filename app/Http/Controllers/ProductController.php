@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::query()->with('category');
+        $products = Product::query()->with('category')->orderBy('name');
 
         $categories = Category::all();
 
@@ -52,11 +51,17 @@ class ProductController extends Controller
         return redirect('/products');
     }
 
+    public function edit(Product $product)
+    {
+        return view('products.edit')
+            ->withProduct($product);
+    }
+
     public function update(Product $product)
     {
         $product->update($this->validateRequest());
 
-        return redirect($product->path());
+        return redirect('/products')->with('success', 'Produto atualizado com sucesso!');
     }
 
     public function destroy(Product $product)

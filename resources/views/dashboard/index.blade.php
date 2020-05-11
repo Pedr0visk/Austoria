@@ -9,19 +9,13 @@
                 </i>
             </div>
             <div>Olá Igor,
-                <div class="page-title-subheading">Aqui está o eesumo sobre vendas e produtos da barbearia Astoria
+                <div class="page-title-subheading">Aqui está o resumo sobre vendas e produtos da barbearia Astoria
                 </div>
             </div>
         </div>
         <div class="page-title-actions">
-            <div class="d-inline-block">
-                <a href="{{ route('sales.create') }}" class="btn-shadow btn btn-success">
-                    <span class="btn-icon-wrapper pr-2 opacity-7">
-                        <i class="fa fa-business-time fa-w-20"></i>
-                    </span>
-                    Nova Venda
-                </a>
-            </div>
+            <img width="200" class="img-fluid" src="{{asset('img/logo.png')}}" alt="">
+
         </div>
     </div>
 </div>

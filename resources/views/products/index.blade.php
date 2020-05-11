@@ -42,6 +42,7 @@
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </form>
                                     </td>
+                                    <td><a href="{{ $product->path() }}" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
                                 </tr>
                             @empty
                                 <tr class="table-info">
@@ -73,7 +74,7 @@
                             <input required type="text" name="name" placeholder="nome" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
-                            <input required type="text" name="price" placeholder="preço" class="form-control">
+                            <input required type="number" name="price" placeholder="preço" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
                             <select required class="form-control" id="category" name="category_id">
