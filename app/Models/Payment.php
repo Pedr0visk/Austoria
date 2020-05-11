@@ -23,4 +23,13 @@ class Payment extends Model
             return $paymentMethod['id'] == $this->payment_method_id;
         });
     }
+
+    public function getPayMethodNameAttribute()
+    {
+        $payMethod = collect(Sale::$paymentMethods)->filter(function ($paymentMethod) {
+            return $paymentMethod['id'] == $this->payment_method_id;
+        })->first();
+
+        return $payMethod['name'];
+    }
 }

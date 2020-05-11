@@ -28,7 +28,9 @@ class SalesTableSeeder extends Seeder
             foreach($months as $month) {
                 # amount of sales
                 for ($i=0; $i < rand(20, 50) ; $i++) {
+                    $form = [];
                     $items = [];
+
                     # amount of products
                     for ($j=0; $j < rand(1, 3); $j++) {
                         $product = Product::find(rand(1,2));
@@ -41,16 +43,18 @@ class SalesTableSeeder extends Seeder
                         ];
                     }
 
-                    $sale = Sale::create([
-                        'customer_id' => $customer->id,
-                        'created_at' => Carbon::createFromFormat('Y-m-d', $year. '-' . $month . '-' . random_int(1, 29))
-                    ]);
+                    $form['customer_id'] = $customer->id;
+                    $form['items'] = $items;
+                    $form['payment'] = ['payment_method_id' => rand(1, 3)];
+                    $form['created_at'] = Carbon::createFromFormat('Y-m-d', $year. '-' . $month . '-' . random_int(1, 29));
 
-                    $sale_items = collect($items)->map( function ($item) {
-                        return new SaleItem($item);
-                    });
+                    $sale = Sale::create($form);
 
-                    $sale->items()->saveMany($sale_items);
+                    $sale->items()->createMany($form['items']);
+
+                    $form['payment'] = array_merge($form['payment'], ['amount' => $sale->total]);
+
+                    $sale->payment()->create($form['payment']);
                 }
 
             }

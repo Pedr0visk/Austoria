@@ -64,8 +64,14 @@ class SaleController extends Controller
             });
         }
 
-        $sales = $sales->paginate();
+        $saleTotalAmount = collect($sales->get())->map(function ($sale) {
+            return $sale->total;
+        })->sum();
 
-        return view('sales.search')->withSales($sales);
+
+        $sales = $sales->paginate();
+        return view('sales.search')
+             ->withSales($sales)
+             ->withTotalAmount($saleTotalAmount);
     }
 }

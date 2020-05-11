@@ -15,7 +15,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Cliente</th>
-                                <th>SubTotal</th>
+                                <th>Forma de pagamento</th>
                                 <th>Total</th>
                                 <th><i class="fa fa-calendar"></i> data</th>
                                 <th>detalhes</th>
@@ -26,7 +26,7 @@
                                 <tr>
                                     <td>{{ $sales->firstItem() + $key }}</td>
                                     <td>{{ $sale->customer()->withTrashed()->first()->name }}</td>
-                                    <td>{{ $sale->subtotal }}</td>
+                                    <td>{{ $sale->payment->pay_method_name }}</td>
                                     <td>{{ $sale->total }}</td>
                                     <td>{{ $sale->created_at->format('d/m/Y') }}</td>
                                     <td><a href="{{ $sale->path() }}" class="btn btn-small btn-success"><i class="fa fa-eye"></i></a></td>
@@ -72,6 +72,19 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="card mb-3 widget-content">
+            <div class="widget-content-outer">
+                <div class="widget-content-wrapper">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Lucro</div>
+                        <div class="widget-subheading">TOTAL</div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-success">{{ $totalAmount }}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
