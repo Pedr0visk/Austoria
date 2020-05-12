@@ -30,7 +30,7 @@
                         <div class="widget-subheading">HOJE</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-success">{{ $dailyAmount }}</div>
+                        <div class="widget-numbers text-success">{{  number_format($dailyAmount, 2, ',', '.') }}</div>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                         <div class="widget-subheading">MÊS</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-info">{{ $totalAmount }}</div>
+                        <div class="widget-numbers text-info">{{  number_format($totalAmount, 2, ',', '.') }}</div>
                     </div>
                 </div>
             </div>
