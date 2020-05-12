@@ -49,6 +49,11 @@ class CustomerController extends Controller
             ->with('success', 'Cliente deletado com sucesso');
     }
 
+    public function history(Customer $customer)
+    {
+        return view('customers.history', compact('customer'));
+    }
+
     protected function validateRequest()
     {
         return request()->validate([

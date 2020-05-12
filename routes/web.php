@@ -18,6 +18,7 @@ Route::post('/customers', 'CustomerController@store')->name('customers.store');
 Route::get('/customers/{customer}', 'CustomerController@edit')->name('customers.edit');
 Route::patch('/customers/{customer}', 'CustomerController@update')->name('customers.update');
 Route::delete('/customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
+Route::get('/customer/history/{customer}', 'CustomerController@history')->name('customers.history');
 
 Route::get('/sales/search', 'SaleController@search')->name('sales.search');
 Route::get('/sales/create', 'SaleController@create')->name('sales.create');

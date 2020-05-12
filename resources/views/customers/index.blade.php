@@ -21,7 +21,7 @@
                                 <th width="5%">#</th>
                                 <th>nome</th>
                                 <th>instagram</th>
-                                <th>Data de Nascimento</th>
+                                <th>Histórico</th>
                                 <th>Editar</th>
                                 <th>Excluir</th>
                             </tr>
@@ -32,8 +32,12 @@
                                     <td>{{ $customers->firstItem() + $key }}</td>
                                     <td>{{ $customer->name }}</td>
                                     <td>@ {{ $customer->instagram }}</td>
-                                    <td>{{ $customer->dob->format('d/m/Y') }}</td>
-                                    <td><a href="{{ $customer->path() }}" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
+                                    <td align="center">
+                                        <a href="{{ route('customers.history', $customer->id) }}" class="btn btn-primary"><i class="fa fa-history"></i></a>
+                                        </td>
+                                    <td>
+                                        <a href="{{ $customer->path() }}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                    </td>
                                     <td>
                                         <form method="post" action="{{ route('customers.destroy', $customer->id) }}">
                                             @csrf

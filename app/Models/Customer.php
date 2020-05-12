@@ -23,5 +23,10 @@ class Customer extends Model
     {
         $this->attributes['dob'] = Carbon::createFromFormat('Y-m-d', $dob);
     }
+
+    protected function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }
 
