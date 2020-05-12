@@ -16,7 +16,7 @@
                             <input value="{{ $customer->name }}" type="text" name="name" placeholder="nome" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
-                            <input value="{{ $customer->email }}" type="email" name="email" placeholder="Example@gmail.com..." class="form-control">
+                            <input value="{{ $customer->instagram }}" type="text" name="instagram" placeholder="@userinstagram" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
                             <input value="{{ $customer->phone }}" type="text" name="phone" placeholder="(24) 99999-9999" class="form-control">

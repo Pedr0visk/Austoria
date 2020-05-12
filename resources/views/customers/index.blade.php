@@ -76,7 +76,7 @@
                             <input type="text" name="name" placeholder="nome" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="email" name="email" placeholder="Example@gmail.com..." class="form-control">
+                            <input type="text" name="instagram" placeholder="@userinstagram" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
                             <input type="text" name="phone" placeholder="(24) 99999-9999" class="form-control">
