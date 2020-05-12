@@ -35,6 +35,54 @@ class SaleManagementTest extends TestCase
     }
 
     /** @test */
+    public function a_credit_transaction_can_be_created()
+    {
+        $this->withoutExceptionHandling();
+        $customer = factory(Customer::class)->create();
+        $products = factory(Product::class, 2)->create();
+
+        $data = array_merge ($this->data(), [
+            'payment' => ['payment_method_id' => 3]
+        ]);
+
+        $response = $this->post('/api/sales', $data);
+
+        $sale = Sale::all();
+        $payment = Payment::all();
+
+        $this->assertCount(1, $sale);
+        $this->assertCount(1, $payment);
+        $this->assertEquals(1662.675, $payment->first()->amount);
+        $this->assertCount(2, SaleItem::all());
+        $this->assertCount(1, Sale::all());
+
+    }
+
+    /** @test */
+    public function a_debit_transaction_can_be_created()
+    {
+        $this->withoutExceptionHandling();
+        $customer = factory(Customer::class)->create();
+        $products = factory(Product::class, 2)->create();
+
+        $data = array_merge ($this->data(), [
+            'payment' => ['payment_method_id' => 2]
+        ]);
+
+        $response = $this->post('/api/sales', $data);
+
+        $sale = Sale::all();
+        $payment = Payment::all();
+
+        $this->assertCount(1, $sale);
+        $this->assertCount(1, $payment);
+        $this->assertEquals(1708.175, $payment->first()->amount);
+        $this->assertCount(2, SaleItem::all());
+        $this->assertCount(1, Sale::all());
+
+    }
+
+    /** @test */
     public function a_sale_with_discount_can_be_created()
     {
         $this->withoutExceptionHandling();

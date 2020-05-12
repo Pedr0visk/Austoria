@@ -17,6 +17,19 @@ class Payment extends Model
         'created_at',
     ];
 
+    public function setAmountAttribute($amount)
+    {
+        $payMethod = collect(Sale::$paymentMethods)->filter(function ($paymentMethod) {
+            return $paymentMethod['id'] == $this->payment_method_id;
+        })->first();
+
+        if (isset($payMethod['tax'])) {
+            $amount -= $amount * ($payMethod['tax'] / 100);
+        }
+
+        $this->attributes['amount'] = $amount;
+    }
+
     public function getPaymentMethodAttribute()
     {
         return collect(Sale::$paymentMethods)->filter(function ($paymentMethod) {

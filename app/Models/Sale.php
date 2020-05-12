@@ -14,8 +14,8 @@ class Sale extends Model
     // soon stored in database
     public static $paymentMethods = [
         ['id' => 1, 'name' => 'Dinheiro'],
-        ['id' => 2, 'name' => 'Débito'],
-        ['id' => 3, 'name' => 'Crédito'],
+        ['id' => 2, 'name' => 'Débito', 'tax' => 2.39],
+        ['id' => 3, 'name' => 'Crédito', 'tax' => 4.99],
     ];
 
     public static $rules = ['customer_id' => 'required'];
@@ -46,7 +46,7 @@ class Sale extends Model
             return $item->subtotalAmount;
         });
 
-        return round($subtotal->sum(), 2);
+        return number_format($subtotal->sum(), 2, ',', '.');
     }
 
     public function getTotalAttribute()
@@ -55,7 +55,7 @@ class Sale extends Model
             return $item->totalAmount;
         });
 
-        return round($total->sum(), 2);
+        return number_format($total->sum(), 2, ',', '.');
     }
 
 }

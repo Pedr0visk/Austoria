@@ -26,14 +26,25 @@
                             <tr>
                                 <td width="2%">{{ $item->quantity }}x</td>
                                 <td>{{ $item->product ? $item->product->name : 'Produto excluído' }}</td>
-                                <td align="center">{{ $item->price }} R$</td>
-                                <td align="center">{{ $item->subtotalAmount }} R$</td>
+                                <td align="left">
+                                    {{ number_format($item->price, 2, ',', '.') }} R$
+                                </td>
+                                <td align="center">
+                                    {{ number_format($item->subtotalAmount, 2, ',', '.') }} R$
+                                </td>
                                 <td align="center">{{ $item->discount }} %</td>
-                                <td>R$ {{ $item->totalAmount }} R$</td>
+                                <td>R$ {{ number_format($item->totalAmount, 2, ',', '.') }} R$</td>
                             </tr>
                         @endforeach
                             <tr class="table-success">
-                                <td colspan="6" align="right">Total = <h2><strong>R$ {{ $sale->total }}</strong></h2></td>
+                                <td align="center">
+                                    <h2><strong> {{$sale->payment->pay_method_name}} </strong></h2>
+                                </td>
+                                <td colspan="6" align="right">
+                                    Total =
+                                    <h2><strong>R$ {{ $sale->payment->amount }}</strong></h2>
+
+                                </td>
                             </tr>
                         </tbody>
                     </table>
