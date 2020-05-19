@@ -41,7 +41,6 @@ class SaleTest extends TestCase
             'payment' => ['payment_method_id' => 1]
         ];
 
-
         $form['items'] = $items;
         $form['created_at'] = Carbon::createFromFormat('Y-m-d', '2019-02-20');
 
