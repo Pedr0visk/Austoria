@@ -89,8 +89,6 @@
         </div>
     </div>
     <!-- end sidebar -->
-    <!-- Button trigger modal -->
-
 
     <!-- Modal -->
     <div class="modal fade" id="detroySale" tabindex="-1" role="dialog" aria-labelledby="destroyModalLabel" aria-hidden="true">

@@ -18,7 +18,8 @@
                                 <th>Forma de pagamento</th>
                                 <th>Total</th>
                                 <th><i class="fa fa-calendar"></i> data</th>
-                                <th>detalhes</th>
+                                <th>Detalhes</th>
+                                <th>Deletar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,9 +28,14 @@
                                     <td>{{ $sales->firstItem() + $key }}</td>
                                     <td>{{ $sale->customer()->withTrashed()->first()->name }}</td>
                                     <td>{{ $sale->payment->pay_method_name }}</td>
-                                    <td>{{ $sale->total }}</td>
+                                    <td>{{ $sale->payment->amount }}</td>
                                     <td>{{ $sale->created_at->format('d/m/Y') }}</td>
                                     <td><a href="{{ $sale->path() }}" class="btn btn-small btn-success"><i class="fa fa-eye"></i></a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#detroySale">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr class="table-info">
@@ -89,5 +95,27 @@
         </div>
     </div>
     <!-- end sidebar -->
+
+     <!-- Modal -->
+     <div class="modal fade" id="detroySale" tabindex="-1" role="dialog" aria-labelledby="destroyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="destroyModalLabel">Tem certeza que deseja excluir essa venda?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                <form method="post" action="{{ route('sales.destroy', $sale->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
