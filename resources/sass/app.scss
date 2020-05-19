@@ -1,13 +1,8 @@
-a {
-    &:hover {
-        text-decoration: none!important;
-    }
-}
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-.modal-backdrop {
-    position: relative;
-}
+// Variables
+@import 'variables';
 
-.modal-dialog {
-    margin: 4.75rem auto;
-}
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';

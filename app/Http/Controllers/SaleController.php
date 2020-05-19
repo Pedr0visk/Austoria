@@ -74,4 +74,13 @@ class SaleController extends Controller
              ->withSales($sales)
              ->withTotalAmount($saleTotalAmount);
     }
+
+    public function destroy(Sale $sale)
+    {
+        $sale->items()->delete();
+        $sale->payment()->delete();
+        $sale->delete();
+
+        return redirect()->route('sales.index');
+    }
 }
