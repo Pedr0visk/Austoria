@@ -27,11 +27,9 @@ class SaleTest extends TestCase
         $response = $this->post('/api/sales', $this->data());
 
         $sale = Sale::first();
-        $reponse = $this->delete($sale->path(), $this->data());
+        $reponse = $this->delete($sale->path());
 
-        $this->assertCount(0, Sale::all());
-        $this->assertCount(0, Payment::all());
-        $this->assertCount(0, SaleItem::all());
+        $this->assertSoftDeleted('sales', ['id' => $sale->id]);
 
         $response->assertStatus(201);
 

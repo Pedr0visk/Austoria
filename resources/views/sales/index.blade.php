@@ -41,7 +41,7 @@
                                 </tr>
                             @empty
                                 <tr class="table info">
-                                    <td colspan="7" align="center">Items de venda vazio.</td>
+                                    <td colspan="8" align="center">Items de venda vazio.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -62,7 +62,7 @@
             <div class="card-header">
                 <a href="#" class="btn btn-info mr-2"><i class="fa fa-folder-open"></i></a>
                 <a href="#" class="btn btn-warning mr-2"><i class="fa fa-download"></i></a>
-                <a href="#" class="btn btn-danger"><i class="fa fa-edit"></i></a>
+                <a href="{{ route('sales.trash')}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
             </div>
             <div class="card-header">Filtro</div>
             <!-- card body -->
@@ -102,11 +102,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                @if( $sales->total() > 0)
                 <form method="post" action="{{ route('sales.destroy', $sale->id) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
+                @endif
             </div>
             </div>
         </div>

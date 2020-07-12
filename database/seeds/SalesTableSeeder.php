@@ -24,7 +24,6 @@ class SalesTableSeeder extends Seeder
 
         foreach($years as $year) {
 
-
             foreach($months as $month) {
                 # amount of sales
                 for ($i=0; $i < rand(20, 50) ; $i++) {
@@ -46,9 +45,9 @@ class SalesTableSeeder extends Seeder
                     $form['customer_id'] = $customer->id;
                     $form['items'] = $items;
                     $form['payment'] = ['payment_method_id' => rand(1, 3)];
-                    $form['created_at'] = Carbon::createFromFormat('Y-m-d', $year. '-' . $month . '-' . random_int(1, 29));
+                    $form['created_at'] = date('Y-m-d', strtotime($year. '-' . $month . '-' . random_int(1, 29)));
 
-                    $sale = Sale::create($form);
+                    $sale = Sale::create(['customer_id' => $customer->id]);
 
                     $sale->items()->createMany($form['items']);
 

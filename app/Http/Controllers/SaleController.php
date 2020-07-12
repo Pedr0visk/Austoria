@@ -21,10 +21,36 @@ class SaleController extends Controller
         $sales = Sale::with('customer:id,name')
              ->with('items')
              ->whereMonth('created_at', $currentMonth)
+             ->where('deleted_at', null)
              ->orderBy('created_at', 'desc')
              ->paginate();
 
         return view('sales.index', compact(['sales', 'paymentMethods']));
+    }
+
+    public function trash()
+    {
+        $paymentMethods = Sale::$paymentMethods;
+
+        $sales = Sale::with('customer:id,name')
+             ->onlyTrashed()
+             ->paginate();
+
+        return view('sales.trash', compact(['sales', 'paymentMethods']));
+    }
+
+    public function restore(Request $request)
+    {
+        $sale = Sale::withTrashed()->find($request->saleId)->restore();
+
+        return redirect()->route('sales.trash');
+    }
+
+    public function delete(Request $request)
+    {
+        $sale = Sale::withTrashed()->find($request->saleId)->forceDelete();
+
+        return redirect()->route('sales.trash');
     }
 
     public function create()
@@ -77,8 +103,6 @@ class SaleController extends Controller
 
     public function destroy(Sale $sale)
     {
-        $sale->items()->delete();
-        $sale->payment()->delete();
         $sale->delete();
 
         return redirect()->route('sales.index');

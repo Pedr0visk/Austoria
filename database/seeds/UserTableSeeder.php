@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Maklad\Permission\Models\Role;
+use Maklad\Permission\Models\Permission;
 
 class UserTableSeeder extends Seeder
 {
@@ -11,6 +13,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+
     }
 }
