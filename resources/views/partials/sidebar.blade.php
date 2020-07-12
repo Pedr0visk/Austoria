@@ -84,6 +84,12 @@
                             </i>Listar clientes
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('customers.birthdays') }}">
+                            <i class="metismenu-icon">
+                            </i>Aniversariantes do mês
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

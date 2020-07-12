@@ -10,6 +10,6 @@ $factory->define(Customer::class, function (Faker $faker) {
         'name' => $faker->name,
         'phone' => $faker->phoneNumber,
         'instagram' => $faker->name,
-        'dob' => date($format = 'Y-m-d')
+        'dob' => $faker->dateTimeBetween('1990-01-01', '2012-12-31')->format('Y-m-d'),
     ];
 });

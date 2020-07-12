@@ -15,9 +15,11 @@ Route::delete('/categories/{category}', 'CategoryController@destroy')->name('cat
 
 Route::get('/customers', 'CustomerController@index')->name('customers.index');
 Route::post('/customers', 'CustomerController@store')->name('customers.store');
+Route::get('/customers/birthdays', 'CustomerController@birthdays')->name('customers.birthdays');
 Route::get('/customers/{customer}', 'CustomerController@edit')->name('customers.edit');
 Route::patch('/customers/{customer}', 'CustomerController@update')->name('customers.update');
-Route::delete('/customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
+Route::delete('/customers/{customer}', 'CustomerController@destroy')->name('customers.destroy')
+;
 Route::get('/customer/history/{customer}', 'CustomerController@history')->name('customers.history');
 
 Route::get('/trash/sales', 'SaleController@trash')->name('sales.trash');
@@ -34,6 +36,7 @@ Route::get('/metrics/sales', 'MetricsController@index');
 
 Route::get('/payments', 'PaymentController@index');
 Route::post('/payments', 'PaymentController@store');
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

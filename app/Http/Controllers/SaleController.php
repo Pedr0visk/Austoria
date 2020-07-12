@@ -43,14 +43,16 @@ class SaleController extends Controller
     {
         $sale = Sale::withTrashed()->find($request->saleId)->restore();
 
-        return redirect()->route('sales.trash');
+        return redirect()->route('sales.trash')
+            ->with('success', 'Venda restaurada com sucesso!');
     }
 
     public function delete(Request $request)
     {
         $sale = Sale::withTrashed()->find($request->saleId)->forceDelete();
 
-        return redirect()->route('sales.trash');
+        return redirect()->route('sales.trash')
+            ->with('success', 'Venda deletada com sucesso!');
     }
 
     public function create()

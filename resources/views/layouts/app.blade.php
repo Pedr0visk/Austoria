@@ -36,16 +36,16 @@
                 <div class="app-header-left">
                     <div class="search-wrapper">
                         <div class="input-holder">
-                            <input type="text" class="search-input" placeholder="Type to search">
+                            <input type="text" class="search-input" placeholder="Digite sua busca">
                             <button class="search-icon"><span></span></button>
                         </div>
                         <button class="close"></button>
                     </div>
                     <ul class="header-menu nav">
                         <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-database"> </i>
-                                Relatório de vendas
+                            <a href="{{ route('customers.birthdays') }}" class="nav-link">
+                                <i class="nav-link-icon fa fa-birthday-cake"> </i>
+                                Aniversariantes do mês
                             </a>
                         </li>
                     </ul>
