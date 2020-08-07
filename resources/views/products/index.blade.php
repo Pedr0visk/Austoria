@@ -74,7 +74,7 @@
                             <input required type="text" name="name" placeholder="nome" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
-                            <input required type="number" name="price" placeholder="preço" class="form-control">
+                            <input id="price" required type="text" name="price" placeholder="preço" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
                             <select required class="form-control" id="category" name="category_id">
@@ -149,3 +149,13 @@
     <!-- end sidebar -->
 </div>
 @endsection
+
+
+@push('scripts')
+    <script>
+        $(document).ready(function(){
+            $('#price').inputmask("9-a{1,3}9{1,3}"); //mask with dynamic syntax
+        });
+    </script>
+@endpush
+

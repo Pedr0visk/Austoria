@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/', 'DashboardController@index')->name('dashboard');
 
 Route::get('/products', 'ProductController@index')->name('products.index');
 Route::post('/products', 'ProductController@store')->name('products.store');

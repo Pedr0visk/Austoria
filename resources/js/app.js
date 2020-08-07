@@ -13,6 +13,8 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import VeeValidate from 'vee-validate';
 import VueCurrencyFilter from 'vue-currency-filter'
 
+import Inputmask from "inputmask";
+
 Vue.use(VueCurrencyFilter, {
     symbol: 'Rp'
 });
