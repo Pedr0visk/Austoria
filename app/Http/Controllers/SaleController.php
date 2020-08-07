@@ -74,4 +74,38 @@ class SaleController extends Controller
              ->withSales($sales)
              ->withTotalAmount($saleTotalAmount);
     }
+
+    public function trash()
+    {
+        $paymentMethods = Sale::$paymentMethods;
+
+        $sales = Sale::with('customer:id,name')
+            ->onlyTrashed()
+            ->paginate();
+
+        return view('sales.trash', compact(['sales', 'paymentMethods']));
+    }
+
+    public function restore(Request $request)
+    {
+        $sale = Sale::withTrashed()->find($request->sale)->restore();
+
+        return redirect()->route('sales.trash')
+            ->with('success', 'Venda restaurada com sucesso!');
+    }
+
+    public function delete(Request $request)
+    {
+        $sale = Sale::withTrashed()->find($request->saledId)->forceDelete();
+
+        return redirect()->route('sales.trash')
+            ->with('success', 'Venda deletada com sucesso!');
+    }
+
+    public function destroy(Sale $sale)
+    {
+        $sale->delete();
+
+        return redirect()->route('sales.index');
+    }
 }

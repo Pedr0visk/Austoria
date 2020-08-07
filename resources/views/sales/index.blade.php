@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 @section('main-content')
 <div class="row">
     <div class="col-md-8 col-sm-12">
@@ -20,6 +26,7 @@
                                 <th>Total</th>
                                 <th><i class="fa fa-calendar"></i> data</th>
                                 <th>detalhes</th>
+                                <th>deletar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +39,12 @@
                                     <td>{{ number_format($sale->payment->amount, 2, ',', '.') }}</td>
                                     <td>{{ $sale->created_at->format('d/m/Y') }}</td>
                                     <td><a href="{{ $sale->path() }}" class="btn btn-small btn-success"><i class="fa fa-eye"></i></a></td>
+
+                                    <td>
+                                        <button type="buttonx" class="btn btn-danger" data-toggle="modal" data-target="#detroySale">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr class="table info">
@@ -56,7 +69,7 @@
             <div class="card-header">
                 <a href="#" class="btn btn-info mr-2"><i class="fa fa-folder-open"></i></a>
                 <a href="#" class="btn btn-warning mr-2"><i class="fa fa-download"></i></a>
-                <a href="#" class="btn btn-danger"><i class="fa fa-edit"></i></a>
+                <a href="{{ route('sales.trash') }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
             </div>
             <div class="card-header">Filtro</div>
             <!-- card body -->
@@ -83,5 +96,28 @@
         </div>
     </div>
     <!-- end sidebar -->
+    <!-- Modal -->
+    <div class="modal fade" id="detroySale" tabindex="-1" role="dialog" aria-labelledby="destroyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="destroyModalLabel">Tem certeza que deseja excluir essa venda?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                @if( $sales->total() > 0)
+                <form method="post" action="{{ route('sales.destroy', $sale->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                @endif
+            </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

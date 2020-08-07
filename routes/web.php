@@ -20,10 +20,13 @@ Route::patch('/customers/{customer}', 'CustomerController@update')->name('custom
 Route::delete('/customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
 Route::get('/customer/history/{customer}', 'CustomerController@history')->name('customers.history');
 
+Route::get('/sales/trash', 'SaleController@trash')->name('sales.trash');
 Route::get('/sales/search', 'SaleController@search')->name('sales.search');
 Route::get('/sales/create', 'SaleController@create')->name('sales.create');
 Route::get('/sales', 'SaleController@index')->name('sales.index');
 Route::get('/sales/{sale}', 'SaleController@show')->name('sales.show');
+Route::get('/sales/restore/{sale}', 'SaleController@restore')->name('sales.restore');
+Route::delete('/sales/{sale}', 'SaleController@destroy')->name('sales.destroy');
 
 Route::get('/metrics/sales', 'MetricsController@index');
 

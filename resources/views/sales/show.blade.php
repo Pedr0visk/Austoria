@@ -33,7 +33,7 @@
                                     {{ number_format($item->subtotalAmount, 2, ',', '.') }} R$
                                 </td>
                                 <td align="center">{{ $item->discount }} %</td>
-                                <td>R$ {{ number_format($item->totalAmount, 2, ',', '.') }} R$</td>
+                                <td>R$ {{ number_format($sale->payment->amount, 2, ',', '.') }} R$</td>
                             </tr>
                         @endforeach
                             <tr class="table-success">
@@ -43,7 +43,7 @@
                                 <td colspan="6" align="right">
                                     Total =
                                     <h2><strong>R$ {{ $sale->payment->amount }}</strong></h2>
-
+                                    <small>Sujeito à desconto de acordo com o método de pagamento</small>
                                 </td>
                             </tr>
                         </tbody>

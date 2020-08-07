@@ -6,10 +6,13 @@ use DB;
 use App\Models\SaleItem;
 use App\Models\Payment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sale extends Model
 {
-    protected $fillable = ['customer_id', 'cashier_id'];
+    use SoftDeletes;
+
+    protected $fillable = ['customer_id', 'cashier_id', 'created_at'];
 
     // soon stored in database
     public static $paymentMethods = [
