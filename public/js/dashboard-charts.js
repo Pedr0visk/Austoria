@@ -233,7 +233,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/nilcelia/Documents/Projetos/Astoria/resources/js/dashboard-charts.js */"./resources/js/dashboard-charts.js");
+module.exports = __webpack_require__(/*! /home/henr/www/Austoria/resources/js/dashboard-charts.js */"./resources/js/dashboard-charts.js");
 
 
 /***/ })

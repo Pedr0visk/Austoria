@@ -76,7 +76,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group mb-3 p-2">
+                    <!-- <div class="form-group mb-3 p-2">
                         <label for="">De:</label>
                         <input class="form-control" type="range" name="min_price" id="minPriceInputId" value="{{ Request::get('min_price')}}" min="2" max="1000" oninput="minPriceOutputId.value = minPriceInputId.value">
                         <output name="minPriceOutputName" id="minPriceOutputId">{{ Request::get('min_price')}}</output> R$
@@ -86,7 +86,7 @@
                         <label for="">Até:</label>
                         <input class="form-control" type="range" name="max_price" id="maxPriceInputId" value="{{ Request::get('max_price')}}" min="1" max="1000" oninput="maxPriceOutputId.value = maxPriceInputId.value">
                         <output name="maxPriceOutputName" id="maxPriceOutputId">{{ Request::get('max_price')}}</output> R$
-                    </div>
+                    </div> -->
 
                     <button class="btn btn-success btn-block mb-3" type="submit">Filtrar <i class="fa fa-search"></i></button>
                 </form>

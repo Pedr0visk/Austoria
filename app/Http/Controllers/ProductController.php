@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Http\Request;
+
 class ProductController extends Controller
 {
     public function index(Request $request)
@@ -31,10 +32,6 @@ class ProductController extends Controller
 
         if ($category = request()->category) {
             $products->where('category_id', $category);
-        }
-
-        if ($max_price = request()->max_price) {
-            $products->where('price', '<=', $max_price);
         }
 
         $products = $products->paginate();
@@ -76,7 +73,7 @@ class ProductController extends Controller
         return request()->validate([
             'name' => 'required',
             'price' => 'required',
-            'category_id' => 'nullable'
+            'category_id' => 'nullable',
         ]);
     }
 }

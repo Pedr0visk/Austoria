@@ -4,9 +4,9 @@ Route::get('/', 'DashboardController@index')->name('dashboard');
 
 Route::get('/products', 'ProductController@index')->name('products.index');
 Route::post('/products', 'ProductController@store')->name('products.store');
+Route::get('/products/search', 'ProductController@search')->name('products.search');
 Route::get('/products/{product}', 'ProductController@edit')->name('products.edit');
 Route::patch('/products/{product}', 'ProductController@update')->name('products.update');
-Route::get('/products/search', 'ProductController@search')->name('products.search');
 Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
 
 Route::get('/categories', 'CategoryController@index')->name('categories.index');

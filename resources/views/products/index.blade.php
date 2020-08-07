@@ -74,7 +74,8 @@
                             <input required type="text" name="name" placeholder="nome" class="form-control">
                         </div>
                         <div class="col-12 mb-3">
-                            <input id="price" required type="text" name="price" placeholder="preço" class="form-control">
+                            <input id="price" required type="text" name="price" placeholder="Exemplo: 23.30" class="form-control">
+                            <small>Formatação das casas decimais devem ser com "."</small>
                         </div>
                         <div class="col-12 mb-3">
                             <select required class="form-control" id="category" name="category_id">
@@ -115,11 +116,11 @@
                         </select>
                     </div>
 
-                    <div class="form-group mb-3 p-2">
+                    <!-- <div class="form-group mb-3 p-2">
                         <label for="">Até:</label>
                         <input class="form-control" type="range" name="max_price" id="maxPriceInputId" value="" min="1" max="1000" oninput="maxPriceOutputId.value = maxPriceInputId.value">
                         <output name="maxPriceOutputName" id="maxPriceOutputId"></output> R$
-                    </div>
+                    </div> -->
 
                     <button class="btn btn-success btn-block mb-3" type="submit">Filtrar <i class="fa fa-search"></i></button>
                 </form>
@@ -149,13 +150,3 @@
     <!-- end sidebar -->
 </div>
 @endsection
-
-
-@push('scripts')
-    <script>
-        $(document).ready(function(){
-            $('#price').inputmask("9-a{1,3}9{1,3}"); //mask with dynamic syntax
-        });
-    </script>
-@endpush
-
