@@ -10,7 +10,7 @@ use App\Models\Payment;
 use App\Models\Customer;
 use App\Models\SaleItem;
 
-class SaleManagementTest extends TestCase
+class SaleApiTest extends TestCase
 {
     use RefreshDatabase;
 
