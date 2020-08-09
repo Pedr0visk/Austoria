@@ -126,26 +126,6 @@
                 </form>
             </div>
         </div>
-
-        <div class="card mb-3">
-            <!-- card header -->
-            <div class="card-header">Adicionar Categoria</div>
-            <!-- card body -->
-            <div class="card-body pb-0">
-                <form action="{{ route('products.store') }}" method="POST">
-                    @csrf
-                    <div class="form-group row">
-                        <div class="col-12 mb-3">
-                            <input required type="text" name="name" placeholder="nome" class="form-control">
-                        </div>
-
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Adicionar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
     <!-- end sidebar -->
 </div>

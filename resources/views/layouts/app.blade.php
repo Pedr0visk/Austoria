@@ -43,9 +43,9 @@
                     </div>
                     <ul class="header-menu nav">
                         <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-database"> </i>
-                                Relatório de vendas
+                            <a href="{{route('customers.birthdays')}}" class="nav-link">
+                                <i class="nav-link-icon fa fa-birthday-cake"> </i>
+                                Aniversáriantes do mês
                             </a>
                         </li>
                     </ul>

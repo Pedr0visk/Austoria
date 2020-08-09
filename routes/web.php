@@ -14,6 +14,7 @@ Route::post('/categories', 'CategoryController@store')->name('categories.store')
 Route::delete('/categories/{category}', 'CategoryController@destroy')->name('categories.destroy');
 
 Route::get('/customers', 'CustomerController@index')->name('customers.index');
+Route::get('/customers/birthdays', 'CustomerController@birthdaysOfTheMonth')->name('customers.birthdays');
 Route::post('/customers', 'CustomerController@store')->name('customers.store');
 Route::get('/customers/{customer}', 'CustomerController@edit')->name('customers.edit');
 Route::patch('/customers/{customer}', 'CustomerController@update')->name('customers.update');

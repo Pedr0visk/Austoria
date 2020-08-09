@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -52,6 +53,14 @@ class CustomerController extends Controller
     public function history(Customer $customer)
     {
         return view('customers.history', compact('customer'));
+    }
+
+    public function birthdaysOfTheMonth(Customer $customer)
+    {
+        $month = Carbon::now()->month;
+        $customers = Customer::whereMonth('dob', $month)->paginate();
+
+        return view('customers.index', compact('customers'));
     }
 
     protected function validateRequest()
